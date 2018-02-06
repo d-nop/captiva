@@ -8,6 +8,7 @@ const app = express();
 const db = require("./models");
 const cloudinary = require("cloudinary");
 const cloudinaryKeys = require("./cloudinaryKeys");
+const bcrypt = require("bcrypt");
 
 //Configuring Cloudinary
 cloudinary.config({
@@ -111,43 +112,56 @@ app.get("/users/:id", function (req, res) {
 
 app.post("/users", function (req, res) {
 
-  db.User.create(req.body).then(function (dbUser) {
-    console.log(dbUser);
-  }).catch(function (err) {
-    return res.json(err);
+  db.User.create(
+    { username: "steven",
+
+      password: "123"
+
+
+
+}, function (err, small) {
+    if (err) return err;
+    // saved!
   });
+
+
+  // db.User.create(req.body).then(function (dbUser) {
+  //   console.log(dbUser);
+  // }).catch(function (err) {
+  //   return res.json(err);
+  // });
 
 });
 
 //# OAUTH2 API ROUTES
-app.post("/api/client", function (req, res) {
+// app.post("/api/client", function (req, res) {
 
-  var client = new Client();
+//   var client = new Client();
 
-  client.name = req.body.name;
-  client.id = req.body.id;
-  client.secret = req.body.secret;
-  client.userId = req.user._id;
+//   client.name = req.body.name;
+//   client.id = req.body.id;
+//   client.secret = req.body.secret;
+//   client.userId = req.user._id;
 
-  client.save(function (err) {
-    if (err)
-      res.send(err);
+//   client.save(function (err) {
+//     if (err)
+//       res.send(err);
 
-    res.json({ message: 'Client added to the locker!', data: client });
-  });
+//     res.json({ message: 'Client added to the locker!', data: client });
+//   });
 
-});
+// });
 
-app.get("/api/client", function (req, res) {
+// app.get("/api/client", function (req, res) {
 
-  Client.find({ userId: req.user._id }, function (err, clients) {
-    if (err)
-      res.send(err);
+//   Client.find({ userId: req.user._id }, function (err, clients) {
+//     if (err)
+//       res.send(err);
 
-    res.json(clients);
-  });
+//     res.json(clients);
+//   });
 
-});
+// });
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
