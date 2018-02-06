@@ -7,15 +7,18 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const db = require("./models");
 const cloudinary = require("cloudinary");
-const cloudinaryKeys = require("./cloudinaryKeys");
+//const cloudinaryKeys = require("./cloudinaryKeys");
 const bcrypt = require("bcrypt");
 
+const saltRounds = 5;
+
+
 //Configuring Cloudinary
-cloudinary.config({
-  cloud_name: cloudinaryKeys.cloud_name,
-  api_key: cloudinaryKeys.cloudinary_api_key,
-  api_secret: cloudinaryKeys.cloudinary_api_secret
-});
+// cloudinary.config({
+//   cloud_name: cloudinaryKeys.cloud_name,
+//   api_key: cloudinaryKeys.cloudinary_api_key,
+//   api_secret: cloudinaryKeys.cloudinary_api_secret
+// });
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -31,9 +34,9 @@ const mongoDB_URI = process.env.MONGODB_URI || "mongodb://localhost/captivaDB";
 mongoose.connect(mongoDB_URI, {
 });
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// app.get("*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
 
 
 //# API ROUTES
@@ -99,16 +102,26 @@ app.get("/users", function (req, res) {
 
 app.get("/users/:id", function (req, res) {
 
-  
 
-
-  db.User.findOne({ _id: req.params._id })
+  db.User.findOne({ _id: req.params.id })
     .then(function (dbUser) {
 
+      if (dbUser.username === "steven"  ) {
 
-      if (dbUser.username === req.body.username && dbUser.password === req.body.password ) {
+        let possiblePass = "123";
+        let dbPass = dbUser.password;
 
-        res.json(dbUser);
+        console.log(possiblePass);
+        console.log(dbPass);
+       // console.log("Hash:" + hash);
+        
+        bcrypt.compare(possiblePass, "123", function(err, res) {
+          
+          res.json(dbUser);
+          console.log(res);
+       })
+       
+       
 
       } else {
 
@@ -126,24 +139,24 @@ app.get("/users/:id", function (req, res) {
 
 app.post("/users", function (req, res) {
 
-  db.User.create(
-    { username: "steven",
+  let userPassword;
 
-      password: "123"
+  
 
-
-
-}, function (err, small) {
-    if (err) return err;
-    // saved!
+  db.User.create(req.body).then(function (dbUser) {
+    console.log(dbUser);
+  }).catch(function (err) {
+    return res.json(err);
   });
 
+  db.User.update({username: req.body.username}, {$set: {password: userPassword}})
+  
+  
+  .then(function(dbUser){
 
-  // db.User.create(req.body).then(function (dbUser) {
-  //   console.log(dbUser);
-  // }).catch(function (err) {
-  //   return res.json(err);
-  // });
+    
+
+  })
 
 });
 
