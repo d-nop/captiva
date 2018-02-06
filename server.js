@@ -9,6 +9,12 @@ const db = require("./models");
 const cloudinary = require("cloudinary");
 const cloudinaryKeys = require("./cloudinaryKeys");
 
+cloudinary.config({ 
+  cloud_name: "captiva", 
+  api_key: cloudinaryKeys.cloudinary_api_key, 
+  api_secret: cloudinaryKeys.cloudinary_api_secret 
+});
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
@@ -57,11 +63,11 @@ app.get("/media/:id", function (req, res) {
 //First we will upload to cloudinary, then pass that url to mongoose.
 app.post("/media", function (req, res) {
 
-
+  //This will capture the filename uploaded by the user and upload it to Cloudniary
   cloudinary.uploader.upload("sample.jpg", { "crop": "limit", "tags": "samples", "width": 3000, "height": 2000 },
   function (result) { console.log(result) })
 
-
+  //Here we will create a document in the DB based on that image/video. We pass the Cloudinary url to the DB.
   db.Media.create()
     .then(function (dbMedia) {
       console.log(dbMedia)
