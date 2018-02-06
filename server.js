@@ -124,7 +124,7 @@ app.post("/users", function (req, res) {
 
 
 
-  db.User.create(req.body).then(function (dbUser) {
+  db.User.save(req.body).then(function (dbUser) {
     console.log(dbUser);
   }).catch(function (err) {
     return res.json(err);
