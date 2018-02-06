@@ -31,8 +31,12 @@ ClientSchema.pre("save", function(next){
    });
 });
 
-
-
+ClientSchema.methods.comparePassword = function(possPassword, cb) {
+  bcrypt.compare(possPassword, this.password, function(err, isMatch) {
+      if (err) return cb(err);
+      cb(null, isMatch);
+  });
+};
 
 function genSalt() {
 
