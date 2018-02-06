@@ -105,10 +105,10 @@ app.get("/users/:id", function (req, res) {
   db.User.findOne({ _id: req.params.id })
     .then(function (dbUser) {
 
-      dbUser.comparePassword(dbUser.password, function(err, isMatch) {
+      dbUser.comparePassword(dbUser.password, function (err, isMatch) {
         if (err) throw err;
         console.log('Password123:', isMatch); // -> Password123: true
-    })
+      })
 
     })
     .catch(function (err) {
