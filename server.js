@@ -63,9 +63,14 @@ app.get("/media/:id", function (req, res) {
 //First we will upload to cloudinary, then pass that url to mongoose.
 app.post("/media", function (req, res) {
 
-  //This will capture the filename uploaded by the user and upload it to Cloudniary
+  //This will capture the filename uploaded by the user and upload it to Cloudinary.
   cloudinary.uploader.upload("sample.jpg", { "crop": "limit", "tags": "samples", "width": 3000, "height": 2000 },
   function (result) { console.log(result) })
+
+  //Here we request an image from Cloudinary.
+  cloudinary.image("sample", {format: "png", width: 100, height: 100, crop: "fill"})
+
+// <img src='http://res.cloudinary.com/demo/image/upload/c_fill,h_100,w_100/sample.png' height='100' width='100'/>
 
   //Here we will create a document in the DB based on that image/video. We pass the Cloudinary url to the DB.
   db.Media.create()
