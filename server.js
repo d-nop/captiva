@@ -99,9 +99,23 @@ app.get("/users", function (req, res) {
 
 app.get("/users/:id", function (req, res) {
 
+  
+
+
   db.User.findOne({ _id: req.params._id })
     .then(function (dbUser) {
-      res.json(dbUser);
+
+
+      if (dbUser.username === req.body.username && dbUser.password === req.body.password ) {
+
+        res.json(dbUser);
+
+      } else {
+
+        Console.log("Wrong username or password.");
+
+      }
+      
     })
     .catch(function (err) {
       return res.json(err);
