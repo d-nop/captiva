@@ -1,4 +1,6 @@
 module.exports = {
     User: require("./User"),
-    Media: require("./Media")
+    Media: require("./Media"),
+    Client: require("./Client")
+
   };
