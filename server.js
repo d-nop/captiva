@@ -10,7 +10,7 @@ const cloudinary = require("cloudinary");
 const cloudinaryKeys = require("./cloudinaryKeys");
 
 cloudinary.config({ 
-  cloud_name: "captiva", 
+  cloud_name: cloudinaryKeys.cloud_name, 
   api_key: cloudinaryKeys.cloudinary_api_key, 
   api_secret: cloudinaryKeys.cloudinary_api_secret 
 });
