@@ -6,6 +6,8 @@ const logger = require("morgan");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const db = require("./models");
+const cloudinary = require("cloudinary");
+const cloudinaryKeys = require("./cloudinaryKeys");
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -24,6 +26,7 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
+
 //# API ROUTES
 app.get("/media", function (req, res) {
 
@@ -32,7 +35,7 @@ app.get("/media", function (req, res) {
       res.json(dbMedia);
     })
     .catch(function (err) {
-     return res.json(err);
+      return res.json(err);
     });
 
 });
@@ -49,9 +52,17 @@ app.get("/media/:id", function (req, res) {
 
 });
 
+
+
+//First we will upload to cloudinary, then pass that url to mongoose.
 app.post("/media", function (req, res) {
 
-  db.Media.create(req.body)
+
+  cloudinary.uploader.upload("sample.jpg", { "crop": "limit", "tags": "samples", "width": 3000, "height": 2000 },
+  function (result) { console.log(result) })
+
+
+  db.Media.create()
     .then(function (dbMedia) {
       console.log(dbMedia)
     }).catch(function (err) {
