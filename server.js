@@ -58,27 +58,23 @@ app.get("/media/:id", function (req, res) {
 
 });
 
-
-
 //First we will upload to cloudinary, then pass that url to mongoose.
 app.post("/media", function (req, res) {
 
   //This will capture the filename uploaded by the user and upload it to Cloudinary.
-  cloudinary.uploader.upload("sample.jpg", { "crop": "limit", "tags": "samples", "width": 3000, "height": 2000 },
+  cloudinary.uploader.upload("/Pictures/Giza.jpg", { "crop": "limit", "tags": "samples", "width": 3000, "height": 2000 },
   function (result) { console.log(result) })
 
   //Here we request an image from Cloudinary.
-  cloudinary.image("sample", {format: "png", width: 100, height: 100, crop: "fill"})
-
-// <img src='http://res.cloudinary.com/demo/image/upload/c_fill,h_100,w_100/sample.png' height='100' width='100'/>
+  // cloudinary.image("sample", {format: "png", width: 100, height: 100, crop: "fill"})
 
   //Here we will create a document in the DB based on that image/video. We pass the Cloudinary url to the DB.
-  db.Media.create()
-    .then(function (dbMedia) {
-      console.log(dbMedia)
-    }).catch(function (err) {
-      return res.json(err);
-    });
+  // db.Media.create()
+  //   .then(function (dbMedia) {
+  //     console.log(dbMedia)
+  //   }).catch(function (err) {
+  //     return res.json(err);
+  //   });
 
 });
 
@@ -117,7 +113,38 @@ app.post("/users", function (req, res) {
 
 });
 
+//# OAUTH2 API ROUTES
+app.post("/api/client", function(req, res){
+
+  var client = new Client();
+
+  client.name = req.body.name;
+  client.id = req.body.id;
+  client.secret = req.body.secret;
+  client.userId = req.user._id;
+
+  client.save(function(err) {
+    if (err)
+      res.send(err);
+
+    res.json({ message: 'Client added to the locker!', data: client });
+  });
+
+});
+
+app.get("/api/client", function(req, res){
+
+  Client.find({ userId: req.user._id }, function(err, clients) {
+    if (err)
+      res.send(err);
+
+    res.json(clients);
+  });
+
+});
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
+
+
