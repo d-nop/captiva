@@ -10,7 +10,6 @@ const cloudinary = require("cloudinary");
 //const cloudinaryKeys = require("./cloudinaryKeys");
 const bcrypt = require("bcrypt");
 
-const saltRounds = 5;
 
 
 //Configuring Cloudinary
@@ -106,29 +105,6 @@ app.get("/users/:id", function (req, res) {
   db.User.findOne({ _id: req.params.id })
     .then(function (dbUser) {
 
-      if (dbUser.username === "steven"  ) {
-
-        let possiblePass = "123";
-        let dbPass = dbUser.password;
-
-        console.log(possiblePass);
-        console.log(dbPass);
-       // console.log("Hash:" + hash);
-        
-        bcrypt.compare(possiblePass, "123", function(err, res) {
-          
-          res.json(dbUser);
-          console.log(res);
-       })
-       
-       
-
-      } else {
-
-        Console.log("Wrong username or password.");
-
-      }
-      
     })
     .catch(function (err) {
       return res.json(err);
@@ -141,7 +117,7 @@ app.post("/users", function (req, res) {
 
   let userPassword;
 
-  
+
 
   db.User.create(req.body).then(function (dbUser) {
     console.log(dbUser);
@@ -149,14 +125,14 @@ app.post("/users", function (req, res) {
     return res.json(err);
   });
 
-  db.User.update({username: req.body.username}, {$set: {password: userPassword}})
-  
-  
-  .then(function(dbUser){
+  db.User.update({ username: req.body.username }, { $set: { password: userPassword } })
 
-    
 
-  })
+    .then(function (dbUser) {
+
+
+
+    })
 
 });
 
