@@ -1,3 +1,4 @@
+const bodyParser = require("body-parser");
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -15,7 +16,7 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.Promise = Promise;
-const mongoDB_URI = process.env.MONGODB_URI || "mongodb://localhost/#";
+const mongoDB_URI = process.env.MONGODB_URI || "mongodb://localhost/captivaDB";
 mongoose.connect(mongoDB_URI, {
 });
 
@@ -27,6 +28,8 @@ app.get("*", function(req, res) {
 app.get("/media", function(req, res){
 
 
+
+
 });
 
 app.get("/media/:id", function(req, res){
@@ -35,7 +38,21 @@ app.get("/media/:id", function(req, res){
 
 app.post("/media", function(req, res){
 
+  db.Media.create(req.body).then(function (dbMedia) {
+    console.log(dbMedia)
+}).catch(function (err) {
+    return res.json(err);
 });
+
+});
+
+app.post("/users", function(req, res){
+
+ 
+
+});
+
+app.
 
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
