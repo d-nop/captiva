@@ -39,7 +39,7 @@ app.get("*", function (req, res) {
 //# API ROUTES
 app.get("/api/media", function (req, res) {
 
-  db.Media.find({})
+  db.Media.find({location: req.body.location})
     .then(function (dbMedia) {
       res.json(dbMedia);
     })
@@ -64,19 +64,22 @@ app.get("/api/media/:id", function (req, res) {
 //First we will upload to cloudinary, then pass that url to mongoose.
 app.post("/api/media", function (req, res) {
 
-  cloudinary.uploader.upload(req.body,
+  //req.body.media is a media file.
+  cloudinary.uploader.upload(req.body.media,
     function (result) {
 
-      const cloudinaryURL = {
+      const newMedia = {
 
-        url: result.secure_url
+        url: result.secure_url,
+        location: req.body.location
 
 
       };
 
-      db.Media.create(cloudinaryURL)
+      db.Media.create(newMedia)
         .then(function (dbMedia) {
           console.log(dbMedia)
+          //res.json(dbMedia);
         }).catch(function (err) {
           return res.json(err);
         });
