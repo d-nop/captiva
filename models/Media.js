@@ -28,7 +28,6 @@ const MediaSchema = new Schema({
 
     }
 
-
 });
 
 const Media = mongoose.model("Media", MediaSchema);
