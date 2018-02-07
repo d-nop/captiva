@@ -37,7 +37,7 @@ app.get("*", function (req, res) {
 
 
 //# API ROUTES
-app.get("/media", function (req, res) {
+app.get("/api/media", function (req, res) {
 
   db.Media.find({})
     .then(function (dbMedia) {
@@ -49,7 +49,7 @@ app.get("/media", function (req, res) {
 
 });
 
-app.get("/media/:id", function (req, res) {
+app.get("/api/media/:id", function (req, res) {
 
   db.Media.findOne({ _id: req.params.id })
     .then(function (dbMedia) {
@@ -62,7 +62,7 @@ app.get("/media/:id", function (req, res) {
 });
 
 //First we will upload to cloudinary, then pass that url to mongoose.
-app.post("/media", function (req, res) {
+app.post("/api/media", function (req, res) {
 
   cloudinary.uploader.upload(req.body,
     function (result) {
@@ -85,7 +85,7 @@ app.post("/media", function (req, res) {
 
 });
 
-app.get("/users", function (req, res) {
+app.get("/api/users", function (req, res) {
 
   db.User.find({})
     .then(function (dbUser) {
@@ -97,7 +97,7 @@ app.get("/users", function (req, res) {
 
 });
 
-app.get("/users/:id", function (req, res) {
+app.get("/api/users/:id", function (req, res) {
 
 
   db.User.findOne({ _id: req.params.id })
@@ -111,7 +111,7 @@ app.get("/users/:id", function (req, res) {
 });
 
 
-app.post("/users", function (req, res) {
+app.post("/api/users", function (req, res) {
 
  
 
