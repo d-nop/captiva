@@ -1,25 +1,42 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
-import Locator from './components/geoLocated';
-import Video from './components/videoCapture';
+import Locator from './components/GeoLocated';
+import Video from './components/multi-media/VideoCapture';
+import WebCapture from './components/multi-media/WebCapture';
 
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-        <Locator />
-        <Video />
+      <Router>
+        <div className="App">
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <div>
+              <Switch>
+                <Route exact path="/video" component={Video} />
          
-        </p>
-      </div>
+                <Route exact path="/camera" component={WebCapture} />
+              </Switch>
+            </div>
+          </div>
+        </div>
+      </Router>
     );
+    // return (
+    //   <div className="App">
+    //     <div className="App-header">
+    //       <img src={logo} className="App-logo" alt="logo" />
+    //       <div>
+    //         <Locator />
+    //         <Video />
+    //         <CamCapture />
+    //       </div>
+    //     </div>
+    //   </div>
+    // );
   }
 }
 
