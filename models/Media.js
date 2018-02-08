@@ -1,4 +1,4 @@
-import { Double } from "../../../../AppData/Local/Microsoft/TypeScript/2.6/node_modules/@types/bson";
+// import { Double } from "../../../../AppData/Local/Microsoft/TypeScript/2.6/node_modules/@types/bson";
 
 const mongoose = require("mongoose");
 
@@ -10,14 +10,25 @@ const MediaSchema = new Schema({
 
         type: String,
         unique: true,
-        required: true
 
     },
+    imgString: {
+        type: String,
+        unique:true,
+    },
+    lat: {
 
-    location: {
+        type: String,
 
-        type: Number,
-        required: true
+    },
+    long: {
+
+        type: String,
+
+    },
+    timestamp: {
+
+        type: String,
 
     },
 
