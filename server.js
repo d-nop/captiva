@@ -39,13 +39,29 @@ app.get("*", function (req, res) {
 //# API ROUTES
 app.get("/api/media", function (req, res) {
 
-  db.Media.find({location: req.body.location})
-    .then(function (dbMedia) {
-      res.json(dbMedia);
-    })
-    .catch(function (err) {
-      return res.json(err);
-    });
+
+  function success(pos) {
+    console.log(pos);
+    db.Media.find({ location: pos })
+      .then(function (dbMedia) {
+        res.json(dbMedia);
+      })
+      .catch(function (err) {
+        return res.json(err);
+      });
+
+    let err = err => {
+      console.log(err);
+    };
+
+    let options = {
+      enableHighAccuracy: true,
+      timeout: 10000
+    };
+  }
+
+  navigator.geolocation.getCurrentPosition(success, err, options);
+
 
 });
 
@@ -64,29 +80,48 @@ app.get("/api/media/:id", function (req, res) {
 //First we will upload to cloudinary, then pass that url to mongoose.
 app.post("/api/media", function (req, res) {
 
-  //req.body.media is a media file.
-  cloudinary.uploader.upload(req.body.media,
-    function (result) {
+  const incomingImg = req.body.imgString;
 
-      const newMedia = {
+  if (incomingImg) {
 
-        url: result.secure_url,
-        location: req.body.location
+    db.Media.create(req.body)
+      .then(function (dbMedia) {
+        console.log(dbMedia)
+        //res.json(dbMedia);
+      }).catch(function (err) {
+        return res.json(err);
+      });
+
+  } else {
+
+    cloudinary.uploader.upload(req.body.imgString,
+      function (result) {
+
+        const newMedia = {
+
+          url: result.secure_url,
+          location: req.body.loc
 
 
-      };
+        };
 
-      db.Media.create(newMedia)
-        .then(function (dbMedia) {
-          console.log(dbMedia)
-          //res.json(dbMedia);
-        }).catch(function (err) {
-          return res.json(err);
-        });
+        db.Media.create(req.body)
+          .then(function (dbMedia) {
+            console.log(dbMedia)
+            //res.json(dbMedia);
+          }).catch(function (err) {
+            return res.json(err);
+          });
 
-    });
+
+      })
+
+  }
+
 
 });
+
+
 
 app.get("/api/users", function (req, res) {
 
@@ -116,7 +151,7 @@ app.get("/api/users/:id", function (req, res) {
 
 app.post("/api/users", function (req, res) {
 
- 
+
 
   db.User.save(req.body).then(function (dbUser) {
     console.log(dbUser);
@@ -124,7 +159,7 @@ app.post("/api/users", function (req, res) {
     return res.json(err);
   });
 
- });
+});
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
