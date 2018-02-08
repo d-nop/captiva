@@ -1,5 +1,10 @@
+.navbar {
+ background-color: #BBC4C4;
+}
+
 .App {
-  text-align: center;
+  background-image:url("./assets/images/finalBackground.jpeg");
+  background-size:cover;
 }
 
 .App-logo {
