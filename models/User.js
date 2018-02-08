@@ -16,6 +16,14 @@ const UserSchema = new Schema({
 
     },
 
+    media: {
+
+        type: Schema.Types.ObjectId,
+        ref: "Media"
+    }
+
+    
+
 });
 
 const User = mongoose.model("User", UserSchema);

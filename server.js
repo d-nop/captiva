@@ -40,6 +40,7 @@ app.get("*", function (req, res) {
 app.get("/api/media", function (req, res) {
 
 
+
   function success(pos) {
     console.log(pos);
     db.Media.find({ location: pos })
@@ -79,6 +80,7 @@ app.get("/api/media/:id", function (req, res) {
 
 //First we will upload to cloudinary, then pass that url to mongoose.
 app.post("/api/media", function (req, res) {
+
 
   const incomingImg = req.body.imgString;
 
@@ -138,13 +140,16 @@ app.get("/api/users", function (req, res) {
 app.get("/api/users/:id", function (req, res) {
 
 
-  db.User.findOne({ _id: req.params.id })
+
+  db.User.findOne({ _id: req.params.id }).populate("Media")
+
     .then(function (dbUser) {
 
     })
     .catch(function (err) {
       return res.json(err);
     });
+
 
 });
 
@@ -160,6 +165,7 @@ app.post("/api/users", function (req, res) {
   });
 
 });
+
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
