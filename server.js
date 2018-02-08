@@ -3,19 +3,19 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const logger = require("morgan");
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 const app = express();
 const db = require("./models");
 const cloudinary = require("cloudinary");
-const cloudinaryKeys = require("./cloudinaryKeys");
+// const cloudinaryKeys = require("./cloudinaryKeys");
 const bcrypt = require("bcrypt");
 
 //Configuring Cloudinary
-cloudinary.config({
-  cloud_name: cloudinaryKeys.cloud_name,
-  api_key: cloudinaryKeys.cloudinary_api_key,
-  api_secret: cloudinaryKeys.cloudinary_api_secret
-});
+// cloudinary.config({
+//   cloud_name: cloudinaryKeys.cloud_name,
+//   api_key: cloudinaryKeys.cloudinary_api_key,
+//   api_secret: cloudinaryKeys.cloudinary_api_secret
+// });
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -80,6 +80,9 @@ app.get("/api/media/:id", function (req, res) {
 
 //First we will upload to cloudinary, then pass that url to mongoose.
 app.post("/api/media", function (req, res) {
+	console.log(req.body);
+	console.log("hitting string");
+
 
 
   const incomingImg = req.body.imgString;
@@ -96,27 +99,27 @@ app.post("/api/media", function (req, res) {
 
   } else {
 
-    cloudinary.uploader.upload(req.body.imgString,
-      function (result) {
+    // cloudinary.uploader.upload(req.body.imgString,
+    //   function (result) {
 
-        const newMedia = {
+    //     const newMedia = {
 
-          url: result.secure_url,
-          location: req.body.loc
-
-
-        };
-
-        db.Media.create(req.body)
-          .then(function (dbMedia) {
-            console.log(dbMedia)
-            //res.json(dbMedia);
-          }).catch(function (err) {
-            return res.json(err);
-          });
+    //       url: result.secure_url,
+    //       location: req.body.loc
 
 
-      })
+    //     };
+
+      //   db.Media.create(req.body)
+      //     .then(function (dbMedia) {
+      //       console.log(dbMedia)
+      //       //res.json(dbMedia);
+      //     }).catch(function (err) {
+      //       return res.json(err);
+      //     });
+
+
+      // })
 
   }
 
