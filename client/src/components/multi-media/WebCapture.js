@@ -1,6 +1,5 @@
 import React from 'react';
 import Webcam from 'react-webcam';
-import Locator from '../GeoLocated';
 import $ from 'jquery';
 
 // console.log(Locator);
@@ -14,33 +13,26 @@ class WebCapture extends React.Component {
   }
  
   capture = () => {
-    let posit;
+
 
     let success=coords=>{
-      console.log(coords); 
-      debugger;
+      console.log(coords);
+      console.log('this is latitude ',coords.coords.latitude)
+      for (let key in coords) {
+        console.log(key)
+      }
+     
      const newMedia = {
       imgString:imageSrc,
-      lat: coords.latitude,
-      long: coords.longitude,
-      timestamp: timestamp
+      lat: coords.coords.latitude,
+      long: coords.coords.longitude,
+      timestamp: coords.timestamp
     };
       console.log(newMedia);
       $.post("/api/media", newMedia, function (res){
         console.log(res);
 
       })
- //  // fetch('/api/media', {
- //  //       method: 'POST',
- //  //       headers: {
- //  //          'Accept': 'application/json',
- //  //          'Content-Type': 'application/json',
- //  //           },
-
- //  //       body: newMedia
-
- // })
-
 
     };
 

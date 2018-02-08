@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
-import Locator from './components/GeoLocated';
 import Video from './components/multi-media/VideoCapture';
 import WebCapture from './components/multi-media/WebCapture';
 
