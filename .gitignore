@@ -57,4 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+
 cloudinaryKeys.js
+
+Giza.jpg
+Everest.jpg
