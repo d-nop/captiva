@@ -1,5 +1,5 @@
 import React from 'react';
-import {geolocated} from 'react-geolocated';
+import {geolocated, geoPropTypes} from 'react-geolocated';
  
 class Locator extends React.Component {
   render() {
@@ -20,6 +20,8 @@ class Locator extends React.Component {
           : <div>Getting the location data&hellip; </div>;
   }
 }
+
+Locator.propTypes = {...Locator.propTypes, ...geoPropTypes};
  
 export default geolocated({
   positionOptions: {
