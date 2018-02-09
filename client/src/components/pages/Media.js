@@ -1,8 +1,8 @@
 import React from "react"
 import {Navbar} from "react-bootstrap";
-import Logo from "./Logo.js";
-import Nav from "./Nav.js";
-import Mediaplayer from "./Mediaplayer.js";
+import Logo from "../Logo.js";
+import Nav from "../Nav.js";
+import Mediaplayer from "../Mediaplayer.js";
 
 // import Login from "./Login.js";
 // import{Logo} from"./Logo.js";

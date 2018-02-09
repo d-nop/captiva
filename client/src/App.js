@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import logo from "./logo.svg";
+import { Grid, Row, Navbar, Col } from "react-bootstrap";
 import "./App.css";
-import Locator from "./components/geoLocated";
-import Video from "./components/multi-media/VideoCapture";
-import WebCapture from "./components/multi-media/WebCapture";
+
 import Nav from "./components/Nav";
-import Signup from "./components/Signup";
+import Login from "./components/pages/Login";
 import Logo from "./components/Logo";
-import Home from "./components/Home";
-import Media from "./components/Media";
+import Home from "./components/pages/Home";
+import Media from "./components/pages/Media";
+import Multimedia from "./components/pages/Multimedia";
 
 class App extends Component {
   getValues = event => {
@@ -27,50 +25,21 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Media/>
+        <Nav />
+        <Grid>
+          <Row>
+            <Col md={12}>
+              <Logo />
+            </Col>
+          </Row>
+          <Login/>
+          <Row>
+          <Multimedia/>
+          </Row>
+        </Grid>
       </div>
     );
   }
 }
 
 export default App;
-
-// <div>
-//        <Home/>
-//          </div>
-
-//<Navbar getValues={this.getValues} />
-//<Logo />
-//<Login getValues={this.getValues} onSubmit={this.onSubmit} />
-// class App extends Component {
-//   render() {
-//     return (
-//       <Router>
-//         <div className="App">
-//           <div className="App-header">
-//             <img src={logo} className="App-logo" alt="logo" />
-//             <div>
-//               <Switch>
-//                 <Route exact path="/video" component={Video} />
-
-//                 <Route exact path="/camera" component={WebCapture} />
-//               </Switch>
-//             </div>
-//           </div>
-//         </div>
-//       </Router>
-//     );
-//     // return (
-//     //   <div className="App">
-//     //     <div className="App-header">
-//     //       <img src={logo} className="App-logo" alt="logo" />
-//     //       <div>
-//     //         <Locator />
-//     //         <Video />
-//     //         <CamCapture />
-//     //       </div>
-//     //     </div>
-//     //   </div>
-//     // );
-//   }
-// }

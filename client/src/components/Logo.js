@@ -12,40 +12,18 @@ const Logo = props => {
 	};
 
 	return (
-		<div id="logoImage">
-			<Col xs={6} md={4}>
-				<img
-					src="../assets/images/media1.png"
-					alt="logo"
-					width="100"
-					height="100"
-					circle
-				/>
-				<h1>Captiva</h1>
-				<br />
-				<br />
-				<br />
-			</Col>
+		<div>
+			<img
+				src="../assets/images/media1.png"
+				alt="logo"
+				width="100"
+				height="100"
+				className="logo-image"
+			/>
+			<h1 className="logo-text">Captiva</h1>
 		</div>
 	);
 };
 
 export default Logo;
-// 	return (
-// 		<div>
-// 		<div className="d-flex justify-content-center">
 
-// 		</div>
-
-// 		<div className="d-flex justify-content-center">
-// 		<h1>Captiva</h1>
-// 		</div>
-
-// 	</div>
-// 	);
-
-// <ButtonToolbar>
-// 	<Button bsStyle="primary" bsSize="large" id="loginInButton">
-// 		Sign Up
-// 	</Button>
-// </ButtonToolbar>;

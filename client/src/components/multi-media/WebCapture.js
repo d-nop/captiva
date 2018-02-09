@@ -1,4 +1,5 @@
 import React from 'react';
+import {Grid, Col, Row} from 'react-bootstrap'
 import Webcam from 'react-webcam';
 import Locator from '../geoLocated';
 // console.log(Locator);
@@ -40,24 +41,29 @@ class WebCapture extends React.Component {
     navigator.geolocation.getCurrentPosition(success,err,options);
     
    
-
-    
-
   };
  
-  render() {
-    return (
-      <div>
+render() {
+return (
+ <div>
+  <Grid>
+     <Row style={{ borderColor: "white", borderWidth: 6 }}>
+     <Col xs={12}>
         <Webcam
           audio={false}
           height={350}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={350}
+          width={400}
         />
-        <button onClick={this.capture}>Capture photo</button>
-      </div>
-    );
+        <button id="captureVideo" onClick={this.capture}>
+          Capture photo
+        </button>
+        </Col>
+    </Row>
+  </Grid>
+</div>
+    );  
   }
 }
 
