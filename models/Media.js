@@ -9,13 +9,10 @@ const MediaSchema = new Schema({
     url: {
 
         type: String,
-        unique: true,
+        //unique: true,
 
     },
-    imgString: {
-        type: String,
-        unique:true,
-    },
+   
     lat: {
 
         type: String,
@@ -32,12 +29,12 @@ const MediaSchema = new Schema({
 
     },
 
-    author: {
+    // author: {
 
-        type: Schema.Types.ObjectId,
-        ref: "User"
+    //     type: Schema.Types.ObjectId,
+    //     ref: "User"
 
-    }
+    // }
 
 });
 
