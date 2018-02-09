@@ -89,6 +89,7 @@ app.post("/api/media", function (req, res) {
 
   //assign a unique identifier to filePath
 
+  
 
   const filePath = "./temp/" + "Dan5" + ".jpg"
 
@@ -99,15 +100,19 @@ app.post("/api/media", function (req, res) {
   });
 
   cloudinary.uploader.upload(filePath,
-    function (result) {
+    function (result, error) {
 
       const newMedia = {
 
         url: result.secure_url,
 
-      };
+      }
 
-      console.log(result);
+      if(error) {
+        console.log(error)
+      } else {
+        console.log(result);
+      }
 
       db.Media.create(newMedia)
         .then(function (dbMedia) {
