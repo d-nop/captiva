@@ -15,14 +15,16 @@ const MediaSchema = new Schema({
 
     lat: {
 
-        type: String
+        type: String,
+        
 
 
     },
 
     long: {
 
-        type: String
+        type: String,
+        
 
     },
     timestamp: {

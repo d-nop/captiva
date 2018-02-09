@@ -44,28 +44,28 @@ app.get("*", function (req, res) {
 //# API ROUTES
 app.get("/api/media", function (req, res) {
 
-  //  function success(pos) {
-  //   console.log(pos);
+   function success(pos) {
+    console.log(pos);
 
-  //   db.Media.find({
-  //     lat: pos,
-  //     long: pos.})
-  //     .then(function (dbMedia) {
-  //       res.json(dbMedia);
-  //     })
-  //     .catch(function (err) {
-  //       return res.json(err);
-  //     });
+    db.Media.find({
+      lat: pos,
+      long: pos.})
+      .then(function (dbMedia) {
+        res.json(dbMedia);
+      })
+      .catch(function (err) {
+        return res.json(err);
+      });
 
-  //   let err = err => {
-  //     console.log(err);
-  //   };
+    let err = err => {
+      console.log(err);
+    };
 
-  //   let options = {
-  //     enableHighAccuracy: true,
-  //     timeout: 10000
-  //   };
-  // }
+    let options = {
+      enableHighAccuracy: true,
+      timeout: 10000
+    };
+  }
 
 
 
@@ -92,7 +92,7 @@ app.post("/api/media", function (req, res) {
   //const vidFilePath = "./temp/" + req.body.timestamp + "### VIDEO FILE EXT ###"
 
 
-  let incomingImg = req.body.incomingImg;
+  let incomingImg = req.body.imgString;
   //let incomingVid = req.body.???
 
   incomingImg = incomingImg.split(';base64,').pop();
@@ -111,30 +111,6 @@ app.post("/api/media", function (req, res) {
         timestamp: req.body.timestamp,
         lat: req.body.lat,
         long: req.body.long
-
-      }
-
-      if (error) {
-        console.log(error)
-      } else {
-        console.log(result);
-      }
-
-      db.Media.create(newMedia)
-        .then(function (dbMedia) {
-          res.json(dbMedia);
-        })
-        .catch(function (err) {
-          res.json(err);
-        });
-    });
-
-  cloudinary.uploader.upload(imgFilePath,
-    function (result, error) {
-
-      const newMedia = {
-
-        url: result.secure_url,
 
       }
 

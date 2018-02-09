@@ -14,7 +14,7 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.14.12"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
