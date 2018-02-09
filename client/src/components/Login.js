@@ -1,98 +1,75 @@
 import React from "react";
-import {Navbar} from "react-bootstrap";
-import {Form} from "react-bootstrap";
-import {FormGroup} from "react-bootstrap";
-import {FormControl} from "react-bootstrap";
-import {Button} from "react-bootstrap";
+import $ from "jquery";
 
+import {
+	Navbar,
+	Form,
+	FormGroup,
+	FormControl,
+	Button,
+	ControlLabel
 
-const Login = props => {
-	const getValues = event => {
-		event.preventDefault();
+} from "react-bootstrap";
 
-		const name = event.target.name;
-		const value = event.target.value;
+class Login extends React.Component {
+	state = {
+		username: "",
+		password: ""
+	};
+
+	handleChange = event => {
+		const { name, value } = event.target;
 		this.setState({ [name]: value });
-		console.log("Value: ", event.target.value);
 	};
 
-	const onSubmit = event => {
+	handleSubmit = event => {
+		// Preventing the default behavior of the form submit (which is to refresh the page)
 		event.preventDefault();
-		console.log("works fine");
+		const loginCreds = {
+			username: this.state.username,
+			password:this.state.password
+		}
+
+		// Alert the user if their login is successful and clear the form input
+		$.post ("/login",loginCreds, (req, res) => {
+			console.log(req, res);
+
+		});
 	};
 
-
-	return (
-		<div className="App">
-			<div className="panel, panel default">
-				<div className="d-flex justify-content-center">
-					<h3>Login</h3>
-				</div>
-			</div>
-
-			<div className="d-flex justify-content-center">
-				<form method="/login" method="POST">
-					<div className="form-group">
-						<label
-							htmlFor="exampleInputName1"
-							onChange={props.getValue}
-						>
-							<h5>User Name</h5>
-						</label>
-						<input
-							type="name"
-							className="form-control"
-							name="userName"
-							id="exampleInputName"
-							placeholder="Enter User Name"
-						/>
-					</div>
-
-					<div className="form-group">
-						<label
-							htmlFor="exampleInputPassword1"
-							onChange={props.getValue}
-						>
-							<h5>Password</h5>
-						</label>
-						<input
-							type="password"
-							className="form-control"
-							name="password"
-							id="exampleInputPassword1"
-							placeholder="Password"
-						/>
-					</div>
-
-					<div className="form-check">
-						<input
-							type="checkbox"
-							className="form-check-input"
-							name="remeber"
-							id="exampleCheck1"
-							onChange={props.getValue}
-						/>
-						<label
-							className="form-check-label"
-							htmlFor="exampleCheck1"
-							onChange={props.getValue}
-						>
-							<h5>Remember Me</h5>
-						</label>
-					</div>
-
-					<button
-						className="submitButton"
-						type="submit"
-						className="btn btn-primary"
-						onClick={props.onSubmit}
-					>
-						<h5>Submit</h5>
-					</button>
-				</form>
-			</div>
-		</div>
-	);
-};
+	render () {
+		return (
+			<Form inline onSubmit = {this.handleSubmit}>
+				<FormGroup controlId="formInlineName">
+					<ControlLabel>
+						<h4>User Name</h4>
+					</ControlLabel>{" "}
+					<FormControl
+						type="text"
+						name="username"
+						value={this.state.username}
+						placeholder="username"
+						onChange={this.handleChange}
+					/>
+				</FormGroup>{" "}
+				<FormGroup controlId="formInlinePassword">
+					<ControlLabel>
+						<h4>Password</h4>
+					</ControlLabel>{" "}
+					<FormControl
+						type="password"
+						name="password"
+						value={this.state.value}
+						placeholder="password"
+						onChange={this.handleChange}
+					/>
+				</FormGroup>
+				<Button type="submit" id="submitButton">
+					Sign Up
+				</Button>
+			</Form>
+		);
+	}
+}
 
 export default Login;

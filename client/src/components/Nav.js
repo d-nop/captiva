@@ -4,7 +4,8 @@ import {Form} from "react-bootstrap";
 import {FormGroup} from "react-bootstrap";
 import {FormControl} from "react-bootstrap";
 import {Button} from "react-bootstrap";
-
+import Register from "./Register.js";
+import Signin from "./Signin.js";
 
   const Nav = ( props ) => {
 
@@ -31,6 +32,7 @@ import {Button} from "react-bootstrap";
       </FormGroup>{' '}
       <Button id="searchBtn" type="submit" onClick= {onSubmit}>Submit</Button>
     </Navbar.Form>
+       <Signin/>
   </Navbar.Collapse>
 </Navbar>
 </div>

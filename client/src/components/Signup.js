@@ -2,10 +2,8 @@ import React from "react"
 import {Navbar} from "react-bootstrap";
 import Logo from "./Logo.js";
 import Nav from "./Nav.js";
-import Register from "./Register.js";
+import Login from "./Login.js";
 
-// import Login from "./Login.js";
-// import{Logo} from"./Logo.js";
 
 const Home = ( props ) => {
   return (
@@ -14,20 +12,12 @@ const Home = ( props ) => {
   			<Nav/>
   		</section>
 
-  		<section>
- 			<Logo />
+   		<section>
+ 			<Login />
   		</section>
-
-		<section>
-		<Register/>
-		</section>
-		
- 		
-	</div>
+</div>
   
  	);
 }; 
 
 export default Home
-
-
