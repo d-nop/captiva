@@ -9,13 +9,10 @@ const MediaSchema = new Schema({
     url: {
 
         type: String,
-        unique: true,
+        //unique: true,
 
     },
-    imgString: {
-        type: String,
-        unique:true,
-    },
+   
     lat: {
 
         type: String,

@@ -90,7 +90,7 @@ app.post("/api/media", function (req, res) {
   //assign a unique identifier to filePath
 
 
-  const filePath = "./temp/" + "Dan3" + ".jpg"
+  const filePath = "./temp/" + "Dan5" + ".jpg"
 
   incomingImg = incomingImg.split(';base64,').pop();
 
@@ -104,8 +104,6 @@ app.post("/api/media", function (req, res) {
       const newMedia = {
 
         url: result.secure_url,
-      
-
 
       };
 
@@ -113,15 +111,13 @@ app.post("/api/media", function (req, res) {
 
       db.Media.create(newMedia)
         .then(function (dbMedia) {
-          return db.User.findOneAndUpdate({}, { $push: { notes: dbMedia._id } }, { new: true });
-        })
-        .then(function (dbUser) {
-          res.json(dbUser);
+          res.json(dbMedia);
         })
         .catch(function (err) {
           res.json(err);
         });
     });
+
 
 });
 
