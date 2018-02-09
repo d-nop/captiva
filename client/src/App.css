@@ -2,10 +2,42 @@
  background-color: #BBC4C4;
 }
 
-.App {
-  background-image:url("./assets/images/finalBackground.jpeg");
+body {
+  background-image:url("https://user-images.githubusercontent.com/30003973/35987050-ba6c9e8a-0cc8-11e8-90bb-4eaac52cb598.jpeg");
   background-size:cover;
 }
+
+h1 {
+
+  font-family: 'Rammetto One', cursive;
+  color:#ffffff;
+  margin-left: -500px;
+  margin-top: -100px;
+  font-size: 100px;
+
+}
+
+#logoImage {
+  margin-left: 550px;
+}
+
+#loginInButton {
+  width: 115px;
+  height:50px;
+  margin-top: -40px;
+  margin-bottom: -300px;
+  background-color: #7CC444;
+  font-family: 'Rammetto One', cursive;
+  border-color: #cccccc;
+}
+
+#searchBtn{
+ background-color: #7CC444;
+font-family: 'Rammetto One', cursive;
+color: #FFFFFF;
+}
+
+https://user-images.githubusercontent.com/31303477/35986461-1bb5cc68-0cc7-11e8-93e7-d780fe09e981.jpg
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

@@ -1,4 +1,10 @@
 import React from "react";
+import {Navbar} from "react-bootstrap";
+import {Form} from "react-bootstrap";
+import {FormGroup} from "react-bootstrap";
+import {FormControl} from "react-bootstrap";
+import {Button} from "react-bootstrap";
+
 
 const Login = props => {
 	const getValues = event => {
@@ -15,8 +21,9 @@ const Login = props => {
 		console.log("works fine");
 	};
 
+
 	return (
-		<div>
+		<div className="App">
 			<div className="panel, panel default">
 				<div className="d-flex justify-content-center">
 					<h3>Login</h3>
@@ -24,7 +31,7 @@ const Login = props => {
 			</div>
 
 			<div className="d-flex justify-content-center">
-				<form>
+				<form method="/login" method="POST">
 					<div className="form-group">
 						<label
 							htmlFor="exampleInputName1"
@@ -57,7 +64,7 @@ const Login = props => {
 						/>
 					</div>
 
-					<div class="form-check">
+					<div className="form-check">
 						<input
 							type="checkbox"
 							className="form-check-input"

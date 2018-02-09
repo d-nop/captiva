@@ -1,10 +1,9 @@
 import React from 'react';
 import Webcam from 'react-webcam';
-import Locator from '../GeoLocated';
+import Locator from '../geoLocated';
 // console.log(Locator);
 
 //console.log(position);
-
 
 class WebCapture extends React.Component {
   setRef = (webcam) => {

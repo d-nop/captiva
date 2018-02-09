@@ -5,9 +5,10 @@ import "./App.css";
 import Locator from "./components/geoLocated";
 import Video from "./components/multi-media/VideoCapture";
 import WebCapture from "./components/multi-media/WebCapture";
-import Navbar from "./components/Navbar";
+import Nav from "./components/Nav";
 import Login from "./components/Login";
 import Logo from "./components/Logo";
+import Home from "./components/Home"; 
 
 class App extends Component {
   getValues = event => {
@@ -25,16 +26,17 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar getValues={this.getValues} />
-        <Logo />
-        <Login getValues={this.getValues} onSubmit={this.onSubmit} />
-      </div>
+       <Home/>
+         </div>
     );
   }
 }
 
-export default App;
+export default App; 
 
+//<Navbar getValues={this.getValues} />
+//<Logo />
+ //<Login getValues={this.getValues} onSubmit={this.onSubmit} />
 // class App extends Component {
 //   render() {
 //     return (
