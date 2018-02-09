@@ -12,15 +12,17 @@ const MediaSchema = new Schema({
         //unique: true,
 
     },
-   
+
     lat: {
 
-        type: String,
+        type: String
+
 
     },
+
     long: {
 
-        type: String,
+        type: String
 
     },
     timestamp: {
@@ -29,12 +31,16 @@ const MediaSchema = new Schema({
 
     },
 
-    // author: {
+    media_type: {
+        type: String
+    },
 
-    //     type: Schema.Types.ObjectId,
-    //     ref: "User"
+    author: {
 
-    // }
+        type: Schema.Types.ObjectId,
+        ref: "User"
+
+    }
 
 });
 

@@ -44,27 +44,30 @@ app.get("*", function (req, res) {
 //# API ROUTES
 app.get("/api/media", function (req, res) {
 
+  //  function success(pos) {
+  //   console.log(pos);
+
+  //   db.Media.find({
+  //     lat: pos,
+  //     long: pos.})
+  //     .then(function (dbMedia) {
+  //       res.json(dbMedia);
+  //     })
+  //     .catch(function (err) {
+  //       return res.json(err);
+  //     });
+
+  //   let err = err => {
+  //     console.log(err);
+  //   };
+
+  //   let options = {
+  //     enableHighAccuracy: true,
+  //     timeout: 10000
+  //   };
+  // }
 
 
-  function success(pos) {
-    console.log(pos);
-    db.Media.find({ location: pos })
-      .then(function (dbMedia) {
-        res.json(dbMedia);
-      })
-      .catch(function (err) {
-        return res.json(err);
-      });
-
-    let err = err => {
-      console.log(err);
-    };
-
-    let options = {
-      enableHighAccuracy: true,
-      timeout: 10000
-    };
-  }
 
   navigator.geolocation.getCurrentPosition(success, err, options);
 
@@ -85,21 +88,48 @@ app.get("/api/media/:id", function (req, res) {
 
 //First we will upload to cloudinary, then pass that url to mongoose.
 app.post("/api/media", function (req, res) {
-  let incomingImg = base64;
+  const imgFilePath = "./temp/" + req.body.timestamp + ".jpg"
+  //const vidFilePath = "./temp/" + req.body.timestamp + "### VIDEO FILE EXT ###"
 
-  //assign a unique identifier to filePath
 
-  
-
-  const filePath = "./temp/" + "Dan5" + ".jpg"
+  let incomingImg = req.body.incomingImg;
+  //let incomingVid = req.body.???
 
   incomingImg = incomingImg.split(';base64,').pop();
 
-  fs.writeFile(filePath, incomingImg, { encoding: 'base64' }, function (err) {
+  fs.writeFile(imgFilePath, incomingImg, { encoding: 'base64' }, function (err) {
     console.log('File created');
   });
 
-  cloudinary.uploader.upload(filePath,
+  cloudinary.uploader.upload(imgFilePath,
+    function (result, error) {
+
+      const newMedia = {
+
+        url: result.secure_url,
+        media_type: result.resource_type,
+        timestamp: req.body.timestamp,
+        lat: req.body.lat,
+        long: req.body.long
+
+      }
+
+      if (error) {
+        console.log(error)
+      } else {
+        console.log(result);
+      }
+
+      db.Media.create(newMedia)
+        .then(function (dbMedia) {
+          res.json(dbMedia);
+        })
+        .catch(function (err) {
+          res.json(err);
+        });
+    });
+
+  cloudinary.uploader.upload(imgFilePath,
     function (result, error) {
 
       const newMedia = {
@@ -108,7 +138,7 @@ app.post("/api/media", function (req, res) {
 
       }
 
-      if(error) {
+      if (error) {
         console.log(error)
       } else {
         console.log(result);
