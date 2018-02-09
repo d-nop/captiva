@@ -9,6 +9,7 @@ import Nav from "./components/Nav";
 import Signup from "./components/Signup";
 import Logo from "./components/Logo";
 import Home from "./components/Home";
+import Media from "./components/Media";
 
 class App extends Component {
   getValues = event => {
@@ -26,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Home/>
+        <Media/>
       </div>
     );
   }

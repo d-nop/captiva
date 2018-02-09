@@ -66,7 +66,7 @@ color: #FFFFFF;
   margin-left: 500px;
   display: inline-block;
   font-family: 'Rammetto One', cursive;
-  background-color: #7CC444;
+  background-color: #1CC4EC;
   border-color: #cccccc;
  
 }
@@ -78,6 +78,15 @@ color: #FFFFFF;
   background-color: #7CC444;
   border-color: #cccccc;
   margin-left: 50px;
+  background-color: #1CC4EC;
+}
+
+#videoPlayer {
+  margin-top: 100px;
+  margin-left: -200px;
+  height: 0px;
+  width: 0px;
+
 }
 
 .App-logo {
