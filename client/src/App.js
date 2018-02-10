@@ -1,6 +1,11 @@
-import React, { Component } from "react";
-import { Grid, Row, Navbar, Col } from "react-bootstrap";
-import "./App.css";
+
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
+import logo from './logo.svg';
+import './App.css';
+import Video from './components/multi-media/VideoCapture';
+import WebCapture from './components/multi-media/WebCapture';
+
 
 import Nav from "./components/Nav";
 import Login from "./components/pages/Login";

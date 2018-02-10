@@ -7,7 +7,7 @@ const UserSchema = new Schema({
     username: {
         type: String,
         required: true,
-        unique: true
+        //unique: true
     },
 
     password: {
@@ -16,11 +16,11 @@ const UserSchema = new Schema({
 
     },
 
-    media: {
+    // media: {
 
-        type: Schema.Types.ObjectId,
-        ref: "Media"
-    }
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Media"
+    // }
 
     
 

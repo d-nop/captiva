@@ -1,7 +1,10 @@
 import React from 'react';
 import {Grid, Col, Row} from 'react-bootstrap'
 import Webcam from 'react-webcam';
-import Locator from '../geoLocated';
+
+import $ from 'jquery';
+
+
 // console.log(Locator);
 
 //console.log(position);
@@ -12,19 +15,27 @@ class WebCapture extends React.Component {
   }
  
   capture = () => {
-    let posit;
+
 
     let success=coords=>{
-      console.log(coords);                              
+      console.log(coords);
+      console.log('this is latitude ',coords.coords.latitude)
+      for (let key in coords) {
+        console.log(key)
+      }
+     
      const newMedia = {
       imgString:imageSrc,
-      loc:coords
+      lat: coords.coords.latitude,
+      long: coords.coords.longitude,
+      timestamp: coords.timestamp
     };
-    console.log(newMedia);
-    // $.post("/api/media", newMedia function (res){
-    //   // grab from data
+      console.log(newMedia);
+      $.post("/api/media", newMedia, function (res){
+        console.log(res);
 
-    // });  
+      })
+
     };
 
     let err = err=>{
@@ -40,7 +51,7 @@ class WebCapture extends React.Component {
     const imageSrc = this.webcam.getScreenshot();
     navigator.geolocation.getCurrentPosition(success,err,options);
     
-   
+
   };
  
 render() {

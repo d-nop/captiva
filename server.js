@@ -9,13 +9,18 @@ const db = require("./models");
 const cloudinary = require("cloudinary");
 const cloudinaryKeys = require("./cloudinaryKeys");
 const bcrypt = require("bcrypt");
+const fs = require("fs");
+const base64 = require("./base64");
 
 //Configuring Cloudinary
 cloudinary.config({
+
   cloud_name: cloudinaryKeys.cloud_name,
   api_key: cloudinaryKeys.cloudinary_api_key,
   api_secret: cloudinaryKeys.cloudinary_api_secret
+
 });
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -80,50 +85,46 @@ app.get("/api/media/:id", function (req, res) {
 
 //First we will upload to cloudinary, then pass that url to mongoose.
 app.post("/api/media", function (req, res) {
+  let incomingImg = base64;
 
+  //assign a unique identifier to filePath
 
-  const incomingImg = req.body.imgString;
+  
 
-  if (incomingImg) {
+  const filePath = "./temp/" + "Dan5" + ".jpg"
 
-    db.Media.create(req.body)
-      .then(function (dbMedia) {
-        console.log(dbMedia)
-        //res.json(dbMedia);
-      }).catch(function (err) {
-        return res.json(err);
-      });
+  incomingImg = incomingImg.split(';base64,').pop();
 
-  } else {
+  fs.writeFile(filePath, incomingImg, { encoding: 'base64' }, function (err) {
+    console.log('File created');
+  });
 
-    cloudinary.uploader.upload(req.body.imgString,
-      function (result) {
+  cloudinary.uploader.upload(filePath,
+    function (result, error) {
 
-        const newMedia = {
+      const newMedia = {
 
-          url: result.secure_url,
-          location: req.body.loc
+        url: result.secure_url,
 
+      }
 
-        };
+      if(error) {
+        console.log(error)
+      } else {
+        console.log(result);
+      }
 
-        db.Media.create(req.body)
-          .then(function (dbMedia) {
-            console.log(dbMedia)
-            //res.json(dbMedia);
-          }).catch(function (err) {
-            return res.json(err);
-          });
-
-
-      })
-
-  }
+      db.Media.create(newMedia)
+        .then(function (dbMedia) {
+          res.json(dbMedia);
+        })
+        .catch(function (err) {
+          res.json(err);
+        });
+    });
 
 
 });
-
-
 
 app.get("/api/users", function (req, res) {
 

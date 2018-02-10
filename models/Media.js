@@ -1,4 +1,4 @@
-import { Double } from "../../../../AppData/Local/Microsoft/TypeScript/2.6/node_modules/@types/bson";
+// import { Double } from "../../../../AppData/Local/Microsoft/TypeScript/2.6/node_modules/@types/bson";
 
 const mongoose = require("mongoose");
 
@@ -9,24 +9,32 @@ const MediaSchema = new Schema({
     url: {
 
         type: String,
-        unique: true,
-        required: true
+        //unique: true,
+
+    },
+   
+    lat: {
+
+        type: String,
+
+    },
+    long: {
+
+        type: String,
+
+    },
+    timestamp: {
+
+        type: String,
 
     },
 
-    location: {
+    // author: {
 
-        type: Number,
-        required: true
+    //     type: Schema.Types.ObjectId,
+    //     ref: "User"
 
-    },
-
-    author: {
-
-        type: Schema.Types.ObjectId,
-        ref: "User"
-
-    }
+    // }
 
 });
 
