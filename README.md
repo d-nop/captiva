@@ -6,6 +6,8 @@ Captiva allows users to capture media in a particular location.
 
 ### Motivation
 
+The app will allow for users to see how people interact with a certain place and see how it has changed over time.
+
 ### How to Use
 
 ### Design Process
