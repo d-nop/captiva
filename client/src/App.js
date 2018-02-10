@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Navbar, Grid, Row, Col } from "react-bootstrap";
+
 import logo from './logo.svg';
 import './App.css';
 import Video from './components/multi-media/VideoCapture';
@@ -30,16 +32,18 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav />
         <Grid>
           <Row>
-            <Col md={12}>
-              <Logo />
+            <Col xs={12}>
+              <Router>
+                 <div>
+                   <Route exact path="/" component={Login} />
+                   <Route exact path="/login" component={Login} />
+                   <Route exact path="/media" component={Media} />
+                   <Route path="/multimedia" component={Multimedia} />
+                 </div>
+               </Router>;
             </Col>
-          </Row>
-          <Login/>
-          <Row>
-          <Multimedia/>
           </Row>
         </Grid>
       </div>

@@ -10,10 +10,7 @@ import Register from "../Register.js";
 const Home = ( props ) => {
   return (
   <div>
-  		<section>
-  			<Nav/>
-  		</section>
-
+  		
   		<section>
  			<Logo />
   		</section>

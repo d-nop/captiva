@@ -36,19 +36,67 @@ const mongoDB_URI = process.env.MONGODB_URI || "mongodb://localhost/captivaDB";
 mongoose.connect(mongoDB_URI, {
 });
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+
+//auth routes
+app.post("/register", (req,res)=>{
+  console.log(req.body);
+  db.User.findOne({username:req.body.username})
+    .then(dbUser=>{
+      if(dbUser){
+        // res.json(dbUser);
+        res.send("user already exists");
+        res.redirect("/Login");
+      }
+      else{
+        console.log(req.body);
+        const user = new db.User(req.body);
+        user.save((err,user)=>{
+            if(err){
+              console.log(err);
+            }
+            res.redirect("/Media");
+          });
+        
+      };
+    });
+        
+          
 });
 
+
+
+app.post("/login", (req,res)=>{
+  console.log(req.body);
+  db.User.findOne({username:req.body.username})
+    .then(dbUser=>{
+      console.log(dbUser);
+      bcrypt.compare(req.body.password, dbUser.password, (err, bool)=> {
+        console.log(dbUser.password);
+        if (err){
+          console.log(err);
+          
+        }
+        else if (bool===true){
+          res.send("Welcome");
+          // res.redirect('/Media');
+        }
+        else{
+          res.send("Invalid password");
+          // res.redirect("/Login");
+        }
+      })
+    })
+})
 
 //# API ROUTES
 app.get("/api/media", function (req, res) {
 
-
-
-  function success(pos) {
+   function success(pos) {
     console.log(pos);
-    db.Media.find({ location: pos })
+
+    db.Media.find({
+      lat: pos.lat,
+      long: pos.long})
       .then(function (dbMedia) {
         res.json(dbMedia);
       })
@@ -65,6 +113,8 @@ app.get("/api/media", function (req, res) {
       timeout: 10000
     };
   }
+
+
 
   navigator.geolocation.getCurrentPosition(success, err, options);
 
@@ -85,30 +135,33 @@ app.get("/api/media/:id", function (req, res) {
 
 //First we will upload to cloudinary, then pass that url to mongoose.
 app.post("/api/media", function (req, res) {
-  let incomingImg = base64;
+  const imgFilePath = "./temp/" + req.body.timestamp + ".jpg"
+  //const vidFilePath = "./temp/" + req.body.timestamp + "### VIDEO FILE EXT ###"
 
-  //assign a unique identifier to filePath
 
-  
-
-  const filePath = "./temp/" + "Dan5" + ".jpg"
+  let incomingImg = req.body.imgString;
+  //let incomingVid = req.body.???
 
   incomingImg = incomingImg.split(';base64,').pop();
 
-  fs.writeFile(filePath, incomingImg, { encoding: 'base64' }, function (err) {
+  fs.writeFile(imgFilePath, incomingImg, { encoding: 'base64' }, function (err) {
     console.log('File created');
   });
 
-  cloudinary.uploader.upload(filePath,
+  cloudinary.uploader.upload(imgFilePath,
     function (result, error) {
 
       const newMedia = {
 
         url: result.secure_url,
+        media_type: result.resource_type,
+        timestamp: req.body.timestamp,
+        lat: req.body.lat,
+        long: req.body.long
 
       }
 
-      if(error) {
+      if (error) {
         console.log(error)
       } else {
         console.log(result);
@@ -167,6 +220,9 @@ app.post("/api/users", function (req, res) {
 
 });
 
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
