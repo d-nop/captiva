@@ -7,7 +7,7 @@ const UserSchema = new Schema({
     username: {
         type: String,
         required: true,
-        unique: true
+        //unique: true
     },
 
     password: {
@@ -15,6 +15,14 @@ const UserSchema = new Schema({
         required: true,
 
     },
+
+    // media: {
+
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Media"
+    // }
+
+    
 
 });
 
