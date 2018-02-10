@@ -10,7 +10,7 @@ const cloudinary = require("cloudinary");
 const cloudinaryKeys = require("./cloudinaryKeys");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
-const base64 = require("./base64");
+//const base64 = require("./base64");
 
 //Configuring Cloudinary
 cloudinary.config({
@@ -20,7 +20,6 @@ cloudinary.config({
   api_secret: cloudinaryKeys.cloudinary_api_secret
 
 });
-
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -36,23 +35,30 @@ const mongoDB_URI = process.env.MONGODB_URI || "mongodb://localhost/captivaDB";
 mongoose.connect(mongoDB_URI, {
 });
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
-
-
 //# API ROUTES
-app.get("/api/media", function (req, res) {
-
-   function success(pos) {
+app.post("/api/loc/media", function (req, res) {
+  
+  console.log("Hitting route!");
+  function success(pos) {
     console.log(pos);
+    const currLat = pos.lat;
+    const currLong = pos.long;
+    dBMedia.find.and([{
+      lat: {
+        $gte: currLat + 0.00001,
+        $lte: currLat - 0.00001
+      }
+    },
+    {
+      long: {
+        $gte: currLong + 0.00001,
+        $lte: currLong - 0.00001
+      }
 
-    db.Media.find({
-      lat: pos,
-      long: pos.})
-      .then(function (dbMedia) {
-        res.json(dbMedia);
-      })
+    }]).then(function (dbMedia) {
+
+      res.json(dbMedia);
+    })
       .catch(function (err) {
         return res.json(err);
       });
@@ -66,11 +72,6 @@ app.get("/api/media", function (req, res) {
       timeout: 10000
     };
   }
-
-
-
-  navigator.geolocation.getCurrentPosition(success, err, options);
-
 
 });
 
@@ -90,7 +91,6 @@ app.get("/api/media/:id", function (req, res) {
 app.post("/api/media", function (req, res) {
   const imgFilePath = "./temp/" + req.body.timestamp + ".jpg"
   //const vidFilePath = "./temp/" + req.body.timestamp + "### VIDEO FILE EXT ###"
-
 
   let incomingImg = req.body.imgString;
   //let incomingVid = req.body.???
@@ -146,8 +146,6 @@ app.get("/api/users", function (req, res) {
 
 app.get("/api/users/:id", function (req, res) {
 
-
-
   db.User.findOne({ _id: req.params.id }).populate("Media")
 
     .then(function (dbUser) {
@@ -160,10 +158,7 @@ app.get("/api/users/:id", function (req, res) {
 
 });
 
-
 app.post("/api/users", function (req, res) {
-
-
 
   db.User.save(req.body).then(function (dbUser) {
     console.log(dbUser);
@@ -173,6 +168,9 @@ app.post("/api/users", function (req, res) {
 
 });
 
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
