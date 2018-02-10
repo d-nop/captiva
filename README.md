@@ -10,6 +10,8 @@ The app will allow for users to see how people interact with a certain place and
 
 ### How to Use
 
+
+
 ### Design Process
 
 ### Technologies
