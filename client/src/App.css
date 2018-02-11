@@ -3,7 +3,7 @@
 }
 
 body {
-  background-image: url("https://user-images.githubusercontent.com/30003973/35987050-ba6c9e8a-0cc8-11e8-90bb-4eaac52cb598.jpeg");
+  background-image: url("https://s-media-cache-ak0.pinimg.com/originals/9c/04/d7/9c04d7b8d816f269b1e116af0c89620e.jpg");
   background-size: cover;
 }
 
@@ -11,20 +11,20 @@ body {
   float: left;
 }
 .logo-text {
-  font-family: "Rammetto One", cursive;
+  font-family: 'Noto Sans', sans-serif;
   color: #ffffff;
   font-size: 70px;
   float: left;
 }
 
 h4 {
-  font-family: "Rammetto One", cursive;
+  font-family: 'Noto Sans', sans-serif;
   color: #ffffff;
 }
 
 #submitButton {
   background-color: #7cc444;
-  font-family: "Rammetto One", cursive;
+  font-family: 'Noto Sans', sans-serif;
   border-color: #cccccc;
   color: #ffffff;
 }
@@ -35,13 +35,13 @@ h4 {
   margin-top: -50px;
 
   background-color: #7cc444;
-  font-family: "Rammetto One", cursive;
+  font-family: 'Noto Sans', sans-serif;
   border-color: #cccccc;
 }
 
 #searchBtn {
   background-color: #7cc444;
-  font-family: "Rammetto One", cursive;
+  font-family: 'Noto Sans', sans-serif;
   color: #ffffff;
 }
 
@@ -57,7 +57,7 @@ h4 {
   height: 50px;
   margin-left: 500px;
   display: inline-block;
-  font-family: "Rammetto One", cursive;
+  font-family: 'Noto Sans', sans-serif;
   background-color: #1cc4ec;
   border-color: #cccccc;
 }
@@ -65,7 +65,7 @@ h4 {
 #signinButton {
   height: 40px;
   margin-top: 5px;
-  font-family: "Rammetto One", cursive;
+  font-family: 'Noto Sans', sans-serif;
   background-color: #7cc444;
   border-color: #cccccc;
   margin-left: 50px;
@@ -86,7 +86,7 @@ h4 {
 
 #captureVideo {
   background-color: #7cc444;
-  font-family: "Rammetto One", cursive;
+  font-family: 'Noto Sans', sans-serif;
   color: #ffffff;
   /*margin-top: 24px;
   margin-left: -400px;*/

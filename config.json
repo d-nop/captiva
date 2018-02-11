@@ -1,6 +1,6 @@
 {
     
-    "security": {
+    "JWT_EXPIRY": {
         "tokenLife" : 3600
     },
     "mongoose": {

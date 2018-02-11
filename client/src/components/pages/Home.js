@@ -1,5 +1,5 @@
 import React from "react"
-import {Navbar} from "react-bootstrap";
+import {Navbar,Grid,Col,Row} from "react-bootstrap";
 import Logo from "../Logo.js";
 import Nav from "../Nav.js";
 import Register from "../Register.js";
@@ -10,16 +10,13 @@ import Register from "../Register.js";
 const Home = ( props ) => {
   return (
   <div>
-  		
-  		<section>
- 			<Logo />
-  		</section>
-
-		<section>
-		<Register/>
-		</section>
-		
- 		
+	<Grid>
+		<Row>
+			<Col xs={12}>
+				<Register/>
+			</Col>
+		</Row>
+	</Grid>	
 	</div>
   
  	);

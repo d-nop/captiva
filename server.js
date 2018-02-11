@@ -11,15 +11,28 @@ const cloudinaryKeys = require("./cloudinaryKeys");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
 const base64 = require("./base64");
+const passport=require("passport");
+const LocalStrategy = require("./auth/authStrategy");
+const checkToken = require("./auth/checkToken");
+const geoloc = require("./geolocation/geolocation");
+const createToken = require("./auth/createToken");
+const jwt = require ("jsonwebtoken");
+
 
 //Configuring Cloudinary
 cloudinary.config({
-
   cloud_name: cloudinaryKeys.cloud_name,
   api_key: cloudinaryKeys.cloudinary_api_key,
   api_secret: cloudinaryKeys.cloudinary_api_secret
-
 });
+
+// passport.use(new OAuth2Strategy({
+//     authorizationURL: 'https://www.example.com/oauth2/authorize',
+//     tokenURL: 'https://www.example.com/oauth2/token',
+//     clientID: "999497679292-72mf97o9d4nnf5d120d8lst59u6rjkrk.apps.googleusercontent.com",
+//     clientSecret: "AIzaSyAuQbjowRwL09_FTtfdM9yznkDT5dK0fhE",
+//     callbackURL: "http://localhost:3000/auth/example/callback"
+//   },
 
 
 if (process.env.NODE_ENV === "production") {
@@ -35,7 +48,6 @@ mongoose.Promise = Promise;
 const mongoDB_URI = process.env.MONGODB_URI || "mongodb://localhost/captivaDB";
 mongoose.connect(mongoDB_URI, {
 });
-
 
 //auth routes
 app.post("/register", (req,res)=>{
@@ -59,17 +71,26 @@ app.post("/register", (req,res)=>{
         
       };
     });
-        
-          
 });
 
 
 
 app.post("/login", (req,res)=>{
   console.log(req.body);
+  // passport.authenticate('local', { successRedirect: '/',
+  //                                  failureRedirect: '/login',
+  //                                  failureFlash: true });
+
+  const authToken = createToken(req.body);  
+  console.log(authToken);
+
   db.User.findOne({username:req.body.username})
     .then(dbUser=>{
       console.log(dbUser);
+      let tokenObj = {
+        authToken, dbUser
+      };
+
       bcrypt.compare(req.body.password, dbUser.password, (err, bool)=> {
         console.log(dbUser.password);
         if (err){
@@ -77,7 +98,7 @@ app.post("/login", (req,res)=>{
           
         }
         else if (bool===true){
-          res.send("Welcome");
+          return res.json(tokenObj);
           // res.redirect('/Media');
         }
         else{
@@ -89,35 +110,41 @@ app.post("/login", (req,res)=>{
 })
 
 //# API ROUTES
-app.get("/api/media", function (req, res) {
+app.get("/api/loc/media", checkToken, function (req, res) {
 
-   function success(pos) {
-    console.log(pos);
+  // jwt.verify(req.token, "JWT_SECRET", (err,data)=>{
+  //   if(err){
+  //     // res.send("failed to verify token", err);
+  //     next();
+  //   }
+  //   else{
+  //     //hit the db
+     
+  //   };
+  // });
+  console.log("geo "+geoloc);
+      const currLat = geoloc.lat;
+      const currLong = geoloc.long;
 
-    db.Media.find({
-      lat: pos.lat,
-      long: pos.long})
+      db.Media.find({}).$where({
+      lat: {
+        $gte: currLat + 0.0000001,
+        $lte: currLat - 0.0000001
+      }
+    }
+    &&
+    {
+      long: {
+        $gte: currLong + 0.000001,
+        $lte: currLong - 0.000001
+      }
+    })
       .then(function (dbMedia) {
         res.json(dbMedia);
       })
       .catch(function (err) {
         return res.json(err);
       });
-
-    let err = err => {
-      console.log(err);
-    };
-
-    let options = {
-      enableHighAccuracy: true,
-      timeout: 10000
-    };
-  }
-
-
-
-  navigator.geolocation.getCurrentPosition(success, err, options);
-
 
 });
 
