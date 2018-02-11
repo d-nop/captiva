@@ -15,13 +15,32 @@ import {
 class Login extends React.Component {
 	state = {
 		username: "",
-		password: ""
+		password: "",
+		submitId:"loginButton",
+		nameholder:"Your username",
+		passholder:"Your Password"
+	};
+
+	handleSignup=event=>{
+		if(this.state.submitId==="loginButton"){
+			this.setState({
+				nameholder:"Pick a username",
+				placeholder:"Pick a password",
+				submitId:"signupButton"
+			});
+		};
+		else{
+			submitId:"loginButton",
+			nameholder:"Your username",
+			passholder:"Your Password"
+		};
 	};
 
 	handleChange = event => {
 		const { name, value } = event.target;
 		this.setState({ [name]: value });
 	};
+
 
 	handleSubmit = event => {
 		// Preventing the default behavior of the form submit (which is to refresh the page)
@@ -50,7 +69,7 @@ class Login extends React.Component {
 							type="text"
 							name="username"
 							value={this.state.username}
-							placeholder="username"
+							placeholder={this.state.nameholder}
 							onChange={this.handleChange}
 						/>
 					</FormGroup>{" "}
@@ -62,11 +81,11 @@ class Login extends React.Component {
 							type="password"
 							name="password"
 							value={this.state.value}
-							placeholder="password"
+							placeholder={this.state.passholder}
 							onChange={this.handleChange}
 						/>
 					</FormGroup>
-					<Button type="submit" id="submitButton">
+					<Button type="submit" id={this.state.submitId}>
 						Sign Up
 					</Button>
 				</Form>
