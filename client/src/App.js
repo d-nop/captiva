@@ -1,18 +1,17 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
+// import {Grid, Row, Col} from 'react-boostrap';
+import {CSS, Grid, Row, Col} from 'react-boostrap';
 import logo from './logo.svg';
 import './App.css';
-import Video from './components/multi-media/VideoCapture';
-import WebCapture from './components/multi-media/WebCapture';
-
-
+import Photo from './components/Pages/Photo';
 import Nav from "./components/Nav";
-import Login from "./components/pages/Login";
+import Login from "./components/Login";
 import Logo from "./components/Logo";
-import Home from "./components/pages/Home";
-import Media from "./components/pages/Media";
-import Multimedia from "./components/pages/Multimedia";
+import Home from "./components/Pages/Home.js";
+import Media from "./components/Pages/Media.js";
+
 
 class App extends Component {
   getValues = event => {
@@ -39,12 +38,12 @@ class App extends Component {
           </Row>
           <Login/>
           <Row>
-          <Multimedia/>
+          <Photo/>
           </Row>
         </Grid>
       </div>
-    );
+    )
   }
-}
 
+};
 export default App;
