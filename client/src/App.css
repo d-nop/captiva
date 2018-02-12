@@ -1,5 +1,95 @@
-.App {
-  text-align: center;
+.navbar {
+  background-color: #bbc4c4;
+}
+
+body {
+  background-image: url("./utils/assets/images/street.jpeg");
+  background-size: cover;
+}
+
+.logo-image {
+  float: left;
+}
+.logo-text {
+  font-family: "Rammetto One", cursive;
+  color: #ffffff;
+  font-size: 70px;
+  float: left;
+}
+
+h4 {
+  font-family: "Rammetto One", cursive;
+  color: #ffffff;
+}
+
+#submitButton {
+  background-color: #7cc444;
+  font-family: "Rammetto One", cursive;
+  border-color: #cccccc;
+  color: #ffffff;
+}
+
+#Register {
+  width: 115px;
+  height: 50px;
+  margin-top: -50px;
+
+  background-color: #7cc444;
+  font-family: "Rammetto One", cursive;
+  border-color: #cccccc;
+}
+
+#searchBtn {
+  background-color: #7cc444;
+  font-family: "Rammetto One", cursive;
+  color: #ffffff;
+}
+
+#loginForm {
+  margin-top: 170px;
+  margin-left: 500px;
+}
+
+#loginButton {
+  height: 35px;
+  margin-top: 5px;
+  width: 200px;
+  height: 50px;
+  margin-left: 500px;
+  display: inline-block;
+  font-family: "Rammetto One", cursive;
+  background-color: #1cc4ec;
+  border-color: #cccccc;
+}
+
+#signinButton {
+  height: 40px;
+  margin-top: 5px;
+  font-family: "Rammetto One", cursive;
+  background-color: #7cc444;
+  border-color: #cccccc;
+  margin-left: 50px;
+  background-color: #1cc4ec;
+}
+
+#videoPlayer {
+  margin-top: 100px;
+  margin-left: -200px;
+  height: 200px;
+  width: 200px;
+}
+
+#webCam {
+  border-color: #1cc4ec;
+  border-radius: 2px;
+}
+
+#captureVideo {
+  background-color: #7cc444;
+  font-family: "Rammetto One", cursive;
+  color: #ffffff;
+  /*margin-top: 24px;
+  margin-left: -400px;*/
 }
 
 .App-logo {
@@ -19,6 +109,10 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

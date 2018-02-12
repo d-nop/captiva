@@ -1,42 +1,44 @@
+
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
+// import {Grid, Row, Col} from 'react-boostrap';
+import {CSS, Grid, Row, Col} from 'react-bootstrap';
 import logo from './logo.svg';
 import './App.css';
-import Video from './components/multi-media/VideoCapture';
-import WebCapture from './components/multi-media/WebCapture';
+// import Photo from './components/Pages/Photo';
+import Nav from "./components/Nav";
+import Login from "./Pages/Login";
+import Logo from "./components/Logo";
 
 
 class App extends Component {
+  getValues = event => {
+    event.preventDefault();
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({ [name]: value });
+  };
+
+  onSubmit = event => {
+    event.preventDefault();
+    console.log("works fine");
+  };
+
   render() {
     return (
-      <Router>
-        <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <div>
-              <Switch>
-                <Route exact path="/video" component={Video} />
-         
-                <Route exact path="/camera" component={WebCapture} />
-              </Switch>
-            </div>
-          </div>
-        </div>
-      </Router>
-    );
-    // return (
-    //   <div className="App">
-    //     <div className="App-header">
-    //       <img src={logo} className="App-logo" alt="logo" />
-    //       <div>
-    //         <Locator />
-    //         <Video />
-    //         <CamCapture />
-    //       </div>
-    //     </div>
-    //   </div>
-    // );
+      <div>
+        <Nav />
+        <Grid>
+          <Row>
+            <Col md={12}>
+              <Logo />
+            </Col>
+          </Row>
+          <Login/>
+        </Grid>
+      </div>
+    )
   }
-}
 
+};
 export default App;
