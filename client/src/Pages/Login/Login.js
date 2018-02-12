@@ -19,6 +19,7 @@ class Login extends React.Component {
 		username: "",
 		password: "",
 		submitId:"loginButton",
+		formId:"loginForm",
 		nameholder:"Your username",
 		passholder:"Your Password",
 		buttonVal: "Log In"
@@ -30,7 +31,8 @@ class Login extends React.Component {
                 nameholder:"Create a username",
                 passholder:"Create a password",
                 submitId:"signupButton",
-                buttonVal: "Sign Up"
+                buttonVal: "Sign Up",
+                formId:"signupForm",
             
         })
 
@@ -41,7 +43,8 @@ class Login extends React.Component {
             submitId:"loginButton",
             nameholder:"Your username",
             passholder:"Your Password",
-            buttonVal: "Log In"
+            buttonVal: "Log In",
+            formId:"loginForm",
         })
     }
     
@@ -57,17 +60,49 @@ class Login extends React.Component {
 	handleSubmit = event => {
 		// Preventing the default behavior of the form submit (which is to refresh the page)
 		event.preventDefault();
-		const loginCreds = {
-			username: this.state.username,
-			password:this.state.password
+		console.log(event.target.id);
+		
+
+		switch(event.target.id){
+
+			case "loginForm":
+				console.log( this.state.username,  this.state.password);
+				const loginCreds = {
+					username: this.state.username,
+					password:this.state.password
+				};
+				console.log(loginCreds);
+				$.post ("/login", loginCreds, (req, res) => {
+					console.log(res);
+					const date = new Date('01 Jan 2020 00:00:00 PDT');
+					const endDate = date.toUTCString();
+					document.cookie="authToken"+res.authToken+";expires="+endDate;					
+				})
+				this.setState({
+					    username: "",
+					    password: ""
+				    })
+			break
+			case "signupForm":
+				const signupCreds = {
+					username: this.state.username,
+					password:this.state.password
+				};
+				console.log(signupCreds);
+				$.post ("/register",signupCreds, (req, res) => {
+					console.log(res);
+					const date = new Date('01 Jan 2020 00:00:00 PDT');
+					const endDate = date.toUTCString();
+					document.cookie="authToken"+res.authToken+";expires="+endDate;				
+				})
+				this.setState({
+					    username: "",
+					    password: ""
+				    })
+				break
 		}
-
-		// Alert the user if their login is successful and clear the form input
-		$.post ("/login",loginCreds, (req, res) => {
-			console.log(req, res);
-
-		});
-	};
+	
+	}
 
 	render () {
 		return (
@@ -76,7 +111,7 @@ class Login extends React.Component {
 			<Row>
 			<Col xs={12}>
 
-				<Form inline onSubmit = {this.handleSubmit} id="loginForm">
+				<Form inline onSubmit = {this.handleSubmit} id={this.state.formId}>
 					<FormGroup controlId="formInlineName">
 						{" "}
 						<FormControl
