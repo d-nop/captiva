@@ -10,7 +10,7 @@ const cloudinary = require("cloudinary");
 const cloudinaryKeys = require("./cloudinaryKeys");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
-const base64 = require("./base64");
+//const base64 = require("./base64");
 
 //Configuring Cloudinary
 cloudinary.config({
@@ -36,9 +36,7 @@ const mongoDB_URI = process.env.MONGODB_URI || "mongodb://localhost/captivaDB";
 mongoose.connect(mongoDB_URI, {
 });
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+
 
 
 //# API ROUTES
@@ -165,6 +163,10 @@ app.post("/api/users", function (req, res) {
     return res.json(err);
   });
 
+});
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 
