@@ -3,22 +3,16 @@
 }
 
 body {
-  background-image: url("./utils/assets/images/street.jpeg");
+  background-image: url("./utils/assets/images/coverPhoto.png");
   background-size: cover;
 }
 
 .logo-image {
-  float: left;
-}
-.logo-text {
-  font-family: "Rammetto One", cursive;
-  color: #ffffff;
-  font-size: 70px;
-  float: left;
+  float: center;
 }
 
 h4 {
-  font-family: "Rammetto One", cursive;
+  font-family: 'PT Serif', serif;
   color: #ffffff;
 }
 
@@ -46,30 +40,36 @@ h4 {
 }
 
 #loginForm {
-  margin-top: 170px;
-  margin-left: 500px;
+ margin-top: 20px; 
 }
 
-#loginButton {
+
+#signupButton {
   height: 35px;
   margin-top: 5px;
-  width: 200px;
-  height: 50px;
-  margin-left: 500px;
-  display: inline-block;
-  font-family: "Rammetto One", cursive;
+  font-size: 18px;
+  font-family: 'PT Serif', serif;
   background-color: #1cc4ec;
-  border-color: #cccccc;
-}
-
-#signinButton {
-  height: 40px;
-  margin-top: 5px;
-  font-family: "Rammetto One", cursive;
-  background-color: #7cc444;
   border-color: #cccccc;
   margin-left: 50px;
   background-color: #1cc4ec;
+}
+
+#loginButton {
+  height: 35%;
+  margin-top: 5px;
+  font-size: 18px;
+  font-family: 'PT Serif', serif;
+  background-color: #7cc444;
+  border-color: #cccccc;
+  margin-left: 50px;
+ 
+}
+
+#toggleButton {
+  color:#ffffff;
+  font-family: 'PT Serif', serif;
+  font-size: 18px;
 }
 
 #videoPlayer {

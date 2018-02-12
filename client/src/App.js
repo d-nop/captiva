@@ -27,15 +27,13 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav />
         <Grid>
           <Row>
             <Col md={12}>
-              <Logo />
+            <Login/>
             </Col>
-          </Row>
-          <Login/>
-        </Grid>
+            </Row>
+           </Grid>
       </div>
     )
   }

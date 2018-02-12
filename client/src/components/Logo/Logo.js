@@ -8,19 +8,16 @@ import { Button } from "react-bootstrap";
 const Logo = props => {
 	const onSubmit = event => {
 		event.preventDefault();
-		console.log("works fine");
+		
 	};
 
 	return (
 		<div>
-			<img
-				src="../assets/images/media1.png"
-				alt="logo"
-				width="100"
-				height="100"
-				className="logo-image"
-			/>
-			<h1 className="logo-text">Captiva</h1>
+			<Grid>
+				<Row>
+				<button><img src={".../utils/assets/images/clickablePawTransparent.png"} onSubmit={this.submit}/></button>
+				</Row>
+			</Grid>
 		</div>
 	);
 };
