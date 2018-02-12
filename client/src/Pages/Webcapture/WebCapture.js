@@ -1,7 +1,8 @@
 import React from 'react';
+import $ from "jquery";
 import {Grid, Col, Row} from 'react-bootstrap';
 import Webcam from 'react-webcam';
-import $ from "jQuery";
+
 // console.log(Locator);
 
 //console.log(position);
@@ -20,10 +21,10 @@ class WebCapture extends React.Component {
       loc:coords
     };
     console.log(newMedia);
-    // $.post("/api/media", newMedia function (res){
-    //   // grab from data
+    $.post("/api/media", newMedia, function (req,res){
+      console.log(res);
 
-    // });  
+    });  
     };
 
     const err = err=>{
