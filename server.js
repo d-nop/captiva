@@ -13,7 +13,7 @@ const fs = require("fs");
 
 // const LocalStrategy = require("./auth/authStrategy");
 //const verifyToken = require("./auth/verifyToken");
-const geoloc = require("./client/src/utils/Geolocation/geolocation");
+//const geoloc = require("./client/src/utils/Geolocation/geoLocation");
 //const createToken = require("./auth/createToken");
 //const jwt = require ("jsonwebtoken");
 
