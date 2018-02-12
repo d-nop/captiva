@@ -1,6 +1,8 @@
 import React from "react";
-import { Col } from "react-bootstrap";
+import { Grid, Row, Col,  } from "react-bootstrap";
 import $ from "jquery";
+import Logo from "../../components/Logo";
+import logo from "../../utils/assets/images/streetPhoto.png";
 
 import {
 	Navbar,
@@ -18,23 +20,33 @@ class Login extends React.Component {
 		password: "",
 		submitId:"loginButton",
 		nameholder:"Your username",
-		passholder:"Your Password"
+		passholder:"Your Password",
+		buttonVal: "Log In"
 	}
 
 	handleSignup=event=>{
-		if(this.state.submitId==="loginButton"){
+        if(this.state.submitId==="loginButton"){
+            this.setState({
+                nameholder:"Create a username",
+                passholder:"Create a password",
+                submitId:"signupButton",
+                buttonVal: "Sign Up"
+            
+        })
+
+         }
+            
+        else{
 			this.setState({
-				nameholder:"Pick a username",
-				placeholder:"Pick a password",
-				submitId:"signupButton"
-			});
-		}
-		else{
-			submitId:"loginButton"
-			nameholder:"Your username"
-			passholder:"Your Password"
-		};
-	}
+            submitId:"loginButton",
+            nameholder:"Your username",
+            passholder:"Your Password",
+            buttonVal: "Log In"
+        })
+    }
+    
+   }
+
 
 	handleChange = event => {
 		const { name, value } = event.target;
@@ -59,12 +71,14 @@ class Login extends React.Component {
 
 	render () {
 		return (
+			<div class="homePage">
+			<Grid>
+			<Row>
 			<Col xs={12}>
-				<Form inline onSubmit = {this.handleSubmit}>
+
+				<Form inline onSubmit = {this.handleSubmit} id="loginForm">
 					<FormGroup controlId="formInlineName">
-						<ControlLabel>
-							<h4>User Name</h4>
-						</ControlLabel>{" "}
+						{" "}
 						<FormControl
 							type="text"
 							name="username"
@@ -74,9 +88,7 @@ class Login extends React.Component {
 						/>
 					</FormGroup>{" "}
 					<FormGroup controlId="formInlinePassword">
-						<ControlLabel>
-							<h4>Password</h4>
-						</ControlLabel>{" "}
+						{" "}
 						<FormControl
 							type="password"
 							name="password"
@@ -84,12 +96,16 @@ class Login extends React.Component {
 							placeholder={this.state.passholder}
 							onChange={this.handleChange}
 						/>
-					</FormGroup>
-					<Button type="submit" id={this.state.submitId}>
-						Sign Up
+					</FormGroup>{" "}
+					<Button type="submit" id={this.state.submitId} >{this.state.buttonVal}
 					</Button>
+					<a  id= "toggleButton" onClick={this.handleSignup}>  Log In/Sign Up </a>
 				</Form>
-			</Col>
+				<Logo/>
+				</Col>
+				</Row>
+				</Grid>
+				</div>
 		);
 	}
 }
