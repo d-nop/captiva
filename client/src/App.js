@@ -9,6 +9,7 @@ import './App.css';
 import Nav from "./components/Nav";
 import Login from "./Pages/Login";
 import Logo from "./components/Logo";
+import WebCapture from "./Pages/Webcapture";
 
 
 class App extends Component {
@@ -26,14 +27,14 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Grid>
-          <Row>
-            <Col md={12}>
-            <Login/>
-            </Col>
-            </Row>
-           </Grid>
+      <div className="container">
+      <Router>
+          <Switch>
+              <Route exact path="/camera" component={WebCapture} />
+              <Route exact path="/" component= {Login} />
+              
+          </Switch>
+      </Router>
       </div>
     )
   }
