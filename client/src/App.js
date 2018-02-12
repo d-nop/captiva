@@ -12,6 +12,25 @@ import Logo from "./components/Logo";
 
 
 class App extends Component {
+  render() {
+    return (
+      <div className="container">
+      <Router>
+          <Switch>
+              
+             
+              <Route exact path="/camera" component={WebCapture} />
+              <Route exact path="/" component= {Login} />
+              
+              
+          </Switch>
+      </Router>
+      </div>
+   ) 
+  }
+}
+
+class App extends Component {
   getValues = event => {
     event.preventDefault();
     const name = event.target.name;
