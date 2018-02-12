@@ -15,9 +15,9 @@ const fs = require("fs");
 //Configuring Cloudinary
 cloudinary.config({
 
-  cloud_name: cloudinaryKeys.cloud_name,
-  api_key: cloudinaryKeys.cloudinary_api_key,
-  api_secret: cloudinaryKeys.cloudinary_api_secret
+  cloud_name: process.env.cloud_name,
+  api_key: process.env.api_key,
+  api_secret: process.env.api_secret
 
 });
 
