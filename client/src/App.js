@@ -33,32 +33,4 @@ class App extends Component {
   }
 }
 
-class App extends Component {
-  getValues = event => {
-    event.preventDefault();
-    const name = event.target.name;
-    const value = event.target.value;
-    this.setState({ [name]: value });
-  };
-
-  onSubmit = event => {
-    event.preventDefault();
-    console.log("works fine");
-  };
-
-  render() {
-    return (
-      <div className="container">
-      <Router>
-          <Switch>
-              <Route exact path="/camera" component={WebCapture} />
-              <Route exact path="/" component= {Login} />
-              
-          </Switch>
-      </Router>
-      </div>
-    )
-  }
-
-};
 export default App;
