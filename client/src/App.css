@@ -3,8 +3,10 @@
 }
 
 body {
-  background-image: url("./utils/assets/images/coverPhoto.png");
+  background-image: url("./utils/assets/images/streetPhoto.png");
   background-size: cover;
+  width:auto;
+  height:auto;
 }
 
 .logo-image {
@@ -13,7 +15,7 @@ body {
 
 h4 {
   font-family: 'PT Serif', serif;
-  color: #ffffff;
+  color: #000000;
 }
 
 #submitButton {
@@ -56,20 +58,22 @@ h4 {
 }
 
 #loginButton {
-  height: 35%;
+
   margin-top: 5px;
   font-size: 18px;
   font-family: 'PT Serif', serif;
   background-color: #7cc444;
   border-color: #cccccc;
   margin-left: 50px;
+  color:#696969;
  
 }
 
 #toggleButton {
-  color:#ffffff;
+  color:#696969;
   font-family: 'PT Serif', serif;
   font-size: 18px;
+  border-color: #cccccc;
 }
 
 #videoPlayer {

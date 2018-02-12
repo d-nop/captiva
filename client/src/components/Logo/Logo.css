@@ -1,0 +1,40 @@
+#logo {
+
+	margin-left: 300px;
+
+}
+
+h1 {
+	font-size: 100px; 
+	color:#ffffff;
+}
+
+#signupButton {
+  height: 35px;
+  margin-top: 5px;
+  font-size: 18px;
+  font-family: 'PT Serif', serif;
+  background-color: #1cc4ec;
+  border-color: #cccccc;
+  margin-left: 50px;
+  background-color: #1cc4ec;
+}
+
+#loginButton {
+
+  margin-top: 5px;
+  font-size: 18px;
+  font-family: 'PT Serif', serif;
+  background-color: #7cc444;
+  border-color: #cccccc;
+  margin-left: 50px;
+  color:#696969;
+ 
+}
+
+#toggleButton {
+  color:#ffffff;
+  font-family: 'PT Serif', serif;
+  font-size: 18px;
+  border-color: #cccccc;
+}

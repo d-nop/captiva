@@ -1,6 +1,8 @@
 import React from "react";
 import { Grid, Row, Col,  } from "react-bootstrap";
 import $ from "jquery";
+import Logo from "../../components/Logo";
+import logo from "../../utils/assets/images/streetPhoto.png";
 
 import {
 	Navbar,
@@ -69,7 +71,7 @@ class Login extends React.Component {
 
 	render () {
 		return (
-			<div>
+			<div class="homePage">
 			<Grid>
 			<Row>
 			<Col xs={12}>
@@ -99,7 +101,7 @@ class Login extends React.Component {
 					</Button>
 					<a  id= "toggleButton" onClick={this.handleSignup}>  Log In/Sign Up </a>
 				</Form>
-				
+				<Logo/>
 				</Col>
 				</Row>
 				</Grid>
