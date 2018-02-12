@@ -19,7 +19,7 @@ class Login extends React.Component {
 		submitId:"loginButton",
 		nameholder:"Your username",
 		passholder:"Your Password"
-	};
+	}
 
 	handleSignup=event=>{
 		if(this.state.submitId==="loginButton"){
@@ -28,18 +28,18 @@ class Login extends React.Component {
 				placeholder:"Pick a password",
 				submitId:"signupButton"
 			});
-		};
+		}
 		else{
-			submitId:"loginButton",
-			nameholder:"Your username",
+			submitId:"loginButton"
+			nameholder:"Your username"
 			passholder:"Your Password"
 		};
-	};
+	}
 
 	handleChange = event => {
 		const { name, value } = event.target;
 		this.setState({ [name]: value });
-	};
+	}
 
 
 	handleSubmit = event => {
