@@ -224,6 +224,7 @@ app.post("/api/media", function (req, res) {
       }
 
       db.Media.create(newMedia)
+        .populate("author")
         .then(function (dbMedia) {
           res.json(dbMedia);
         })
