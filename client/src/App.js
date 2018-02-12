@@ -9,6 +9,7 @@ import './App.css';
 import Nav from "./components/Nav";
 import Login from "./Pages/Login";
 import Logo from "./components/Logo";
+import WebCapture from "./Pages/Webcapture"
 
 
 class App extends Component {
