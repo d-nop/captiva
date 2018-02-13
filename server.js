@@ -217,7 +217,7 @@ app.post("/api/media", function (req, res) {
   cloudinary.uploader.upload(imgFilePath,
     function (result, error) {
       console.log(result);
-      console.log("lat", Object.keys(req.body) );
+      console.log("REQ.BODY: " + req.body);
 
       const newMedia = {
 
