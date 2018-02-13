@@ -27,6 +27,15 @@ cloudinary.config({
 
 });
 
+// cloudinary.config({
+
+//   cloud_name: cloudinaryKeys.cloud_name,
+//   api_key: cloudinaryKeys.cloudinary_api_key,
+//   api_secret: cloudinaryKeys.cloudinary_api_secret
+
+
+// });
+
 // passport.use(new OAuth2Strategy({
 //     authorizationURL: 'https://www.example.com/oauth2/authorize',
 //     tokenURL: 'https://www.example.com/oauth2/token',
@@ -42,7 +51,8 @@ if (process.env.NODE_ENV === "production") {
 
 //Setting up middleware
 app.use(logger("dev"));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //Configuring mongoose to use promises.
 mongoose.Promise = Promise;
@@ -207,15 +217,15 @@ app.post("/api/media", function (req, res) {
   cloudinary.uploader.upload(imgFilePath,
     function (result, error) {
       console.log(result);
-      console.log(req.body.lat);
-      
+      console.log("lat", Object.keys(req.body) );
+
       const newMedia = {
 
         url: result.secure_url,
         media_type: result.resource_type,
-        timestamp: req.body.timestamp,
-        lat: req.body.lat,
-        long: req.body.long
+        //timestamp: req.body.timestamp,
+        //lat: req.body.lat,
+        //long: req.body.long
 
       }
 
@@ -226,7 +236,6 @@ app.post("/api/media", function (req, res) {
       }
 
       db.Media.create(newMedia)
-        .populate("author")
         .then(function (dbMedia) {
           res.json(dbMedia);
         })
