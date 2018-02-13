@@ -218,7 +218,7 @@ app.post("/api/media", function (req, res) {
     function (result, error) {
       console.log(result);
       console.log(req.body.loc.coords.latitude);
-      console.log(req.body.loc.timestamp);
+      console.log(typeof req.body.loc);
 
       const newMedia = {
 
