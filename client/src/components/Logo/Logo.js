@@ -14,6 +14,7 @@ const Logo = props => {
 	};
 
 	return (
+    
 		<Row>
   			<Col xs={12}>
   			   <Row center="xs">

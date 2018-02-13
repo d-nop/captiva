@@ -1,8 +1,12 @@
+html, body, #root {
+  height: 100%;
+}
+
 .LoginPage {
-	background: url("../../utils/assets/images/interconnection2.jpg") no-repeat center center fixed;
+	background: url("../../utils/assets/images/streetPhoto.png") no-repeat center center fixed;
 	background-size: cover;
-  	width:auto;
-  	height:100%;
+  width:auto;
+  height:100%;
 }
 
 
@@ -12,23 +16,24 @@
 }
 
 #logo {
-	padding-left: 120px;
-  padding-top: 30px;
-  
+	height:25%;
+  width:25%;
+  margin-top: 5%;
+  margin-left: 38%;  
  }
 
-h1 {
-	font-size: 100px; 
-	color:#ffffff;
-  padding-left: 40px;
-  padding-top: 10px;
+#BrandName {
+	font-size: 70px; 
+  text-align: center;
+	color:white; 
+  font-family: 'Averia Serif Libre', cursive;
 }
 
 #signupButton {
   
  font-size: 18px;
   font-family: 'PT Serif', serif;
-  background-color: #000000;
+  background-color: #D03E27;
   border-color: #cccccc;
   padding-right:50px;
   color:#ffffff;
@@ -41,7 +46,7 @@ h1 {
   margin-top: 5px;
   font-size: 18px;
   font-family: 'PT Serif', serif;
-  background-color: #D42425;
+  background-color: #908EB4;
   border-color: #cccccc;
   margin-left: 50px;
   color:#ffffff;

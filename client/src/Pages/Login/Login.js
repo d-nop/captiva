@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import $ from "jquery";
-import Logo from "../../components/Logo";
-import logo from "../../utils/assets/images/interconnection2.jpg";
+import PawLogo from "../../utils/assets/images/PawLogo.png";
+import Background from "../../utils/assets/images/streetPhoto.png";
 import "./Login.css";
 
 import {
@@ -107,7 +107,10 @@ class Login extends React.Component {
 										Log In/Sign Up{" "}
 									</a>
 								</Form>
-								<Logo />
+								<img src = {PawLogo} alt="logo" id="logo"/>
+								<Row center="xs">
+      		      					<h1 id="BrandName">Captiva</h1>
+      							</Row>
 							</Col>
 						</Row>
 					</Grid>

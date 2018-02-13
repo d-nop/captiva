@@ -1,11 +1,10 @@
 import React from 'react';
 import {Grid, Col, Row} from 'react-bootstrap';
 import Webcam from 'react-webcam';
-import "./WebCapture.css"
+import Capturevideo from './dogPaw.png';
+import MyMedia from './myMedia.png';
+import GeoTagged from './GeoTaggedIcon.png';
 
-// console.log(Locator);
-
-//console.log(position);
 
 class WebCapture extends React.Component {
   setRef = (webcam) => {
@@ -22,10 +21,7 @@ class WebCapture extends React.Component {
       loc:coords
     };
     console.log(newMedia);
-    // $.post("/api/media", newMedia function (res){
-    //   // grab from data
-
-    // });  
+  
     };
 
     let err = err=>{
@@ -43,7 +39,12 @@ class WebCapture extends React.Component {
     
    
   };
- 
+
+   onClick = event => {
+    event.preventDefault();
+    console.log("works fine");
+  };
+
 render() {
 return (
  <div class= "MediaCapture">
@@ -52,24 +53,15 @@ return (
         <Webcam
           id="webcam"
           audio={false}
-          height={350}
+          height={"100%"}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={400}
-
-        />
-        <button id="captureVideo" onClick={this.capture}>
-        Take Pictures
-        </button>
-        <button id="myMedia" onClick={this.capture}>
-        My Media
-        </button>
-        <button id="GeotaggedMedia" onClick={this.capture}>
-        Geotagged Media
-        </button>
+          width={"100%"}
+          />
+          <button id="buttonCapture"><img src = {Capturevideo} onClick={this.Capturevideo} Capture photo/>
+          </button>
         </Col>
     </Row>
-
 </div>
     );  
   }
@@ -77,8 +69,4 @@ return (
 
 export default WebCapture;
 
-// <Row around="xs">
-//   <Col xs={2} />
-//   <Col xs={2} />
-//   <Col xs={2} />
-// <Row>
+

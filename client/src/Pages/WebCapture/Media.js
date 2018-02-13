@@ -9,7 +9,7 @@ import Nav from "../../components/Nav";
 
 const Media = ( props ) => {
   return (
-  <div class="MediaCapture">
+  <div className="MediaCapture">
   <img src={Background} id="Background"/>
   <Grid>
     <Row>
