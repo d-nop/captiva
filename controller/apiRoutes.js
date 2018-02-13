@@ -1,5 +1,7 @@
 const checkToken = require("../auth/checkToken");
 const verifyToken = require("../auth/verifyToken");
+const db = require("../models");
+
 
 module.exports.postNew=(req,res)=>{
 	console.log("Ovie is trying to do something");
@@ -43,7 +45,33 @@ module.exports.postNew=(req,res)=>{
 
 module.exports.getLocal=(req,res)=>{
 	console.log("the right local media");
-	console.log(req.body);
+	// console.log(req.body);
+  const currLat = req.body.loc.lat;
+  const currLong = req.body.loc.lng;
+  console.log(currLong,currLat);
+
+        db.Media.find({})
+        // .$where({
+        //             lat: {
+        //                 $gte: currLat + 0.00001,
+        //                 $lte: currLat - 0.00001
+        //             }
+        //         } &&
+        //         {
+        //             long: {
+        //                 $gte: currLong + 0.0001,
+        //                 $lte: currLong - 0.0001
+        //             }
+        //         })
+            .then(function(dbMedia) {
+              console.log("searched");
+                console.log(dbMedia);
+                res.json(dbMedia);
+            })
+            .catch(function(err) {
+                return res.json(err);
+            });
+
 	 // jwt.verify(req.body.token, JWT_SECRET, function(err, decoded) {
   //     if (err) {
   //       console.log("You have a token and an error")
