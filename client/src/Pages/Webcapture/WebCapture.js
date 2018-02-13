@@ -11,6 +11,21 @@ class WebCapture extends React.Component {
   setRef = (webcam) => {
     this.webcam = webcam;
   }
+
+
+  readCookie=()=> {
+      const nameEQ = "authToken=";
+      const ca = document.cookie.split(";");
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === " ") c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) {
+          return c.substring(nameEQ.length, c.length);
+        }
+      }
+      return null;
+    }
+
  
    capture = () => {
 
@@ -18,7 +33,8 @@ class WebCapture extends React.Component {
       console.log(coords);                              
      const newMedia = {
       imgString:imageSrc,
-      loc:coords
+      loc:coords,
+      token:this.readCookie()
     };
     console.log(newMedia);
     $.post("/api/media", newMedia, function (req,res){
@@ -42,18 +58,7 @@ class WebCapture extends React.Component {
    
   }
 
-  readCookie=(name)=> {
-      const nameEQ = name + "=";
-      const ca = document.cookie.split(";");
-      for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === " ") c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) {
-          return c.substring(nameEQ.length, c.length);
-        }
-      }
-      return null;
-    }
+  
    
   getMine=()=>{
    
@@ -81,13 +86,13 @@ return (
           screenshotFormat="image/jpeg"
           width={400}
         />
-        <button id="captureVideo" onClick={this.getMine}>
+        <button id="myMedia" onClick={this.getMine}>
         My footprint
         </button>
         <button id="captureVideo" onClick={this.capture}>
         Capture photo
         </button>
-        <button id="captureVideo" onClick={this.getLocal}>
+        <button id="locMedia" onClick={this.getLocal}>
         Local Footprints
         </button>
         </Col>

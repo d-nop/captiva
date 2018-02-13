@@ -10,6 +10,7 @@ import Nav from "./components/Nav";
 import Login from "./Pages/Login";
 import Logo from "./components/Logo";
 import WebCapture from "./Pages/Webcapture";
+import Display from "./Pages/Display";
 
 
 class App extends Component {
@@ -32,7 +33,7 @@ class App extends Component {
           <Switch>
               <Route exact path="/camera" component={WebCapture} />
               <Route exact path="/" component= {Login} />
-              
+              <Route exact path="/display" component= {Display} />
           </Switch>
       </Router>
       </div>

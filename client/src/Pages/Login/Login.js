@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Row, Col,  } from "react-bootstrap";
-import $ from "jquery";
+import axios from "axios";
 
 import {
 	Navbar,
@@ -31,9 +31,7 @@ class Login extends React.Component {
                 submitId:"signupButton",
                 buttonVal: "Sign Up",
                 formId:"signupForm",
-            
         })
-
          }
             
         else{
@@ -64,18 +62,20 @@ class Login extends React.Component {
 		switch(event.target.id){
 
 			case "loginForm":
-				console.log( this.state.username,  this.state.password);
 				const loginCreds = {
 					username: this.state.username,
 					password:this.state.password
 				};
 				console.log(loginCreds);
-				$.post ("/login", loginCreds, (req, res) => {
-					console.log(res);
-					const date = new Date('01 Jan 2020 00:00:00 PDT');
-					const endDate = date.toUTCString();
-					document.cookie="authToken"+res.authToken+";expires="+endDate;					
-				})
+				axios.post ("/login", loginCreds)
+					.then(res => {
+						console.log(res);
+						const newObj ={username: res.data.username,
+
+												token: res.data.token};
+						localStorage.setItem("user", newObj);					
+					})
+					.catch(err=>console.log(err))
 				this.setState({
 					    username: "",
 					    password: ""
@@ -87,12 +87,13 @@ class Login extends React.Component {
 					password:this.state.password
 				};
 				console.log(signupCreds);
-				$.post ("/register",signupCreds, (req, res) => {
-					console.log(res);
-					const date = new Date('01 Jan 2020 00:00:00 PDT');
-					const endDate = date.toUTCString();
-					document.cookie="authToken"+res.authToken+";expires="+endDate;				
-				})
+				axios.post ("/register",signupCreds)
+					.then(res => {
+							console.log(res);
+							localStorage.setItem("username", res.username);
+							localStorage.setItem("token", res.token);					
+					})
+					.catch(err=>console.log(err))
 				this.setState({
 					    username: "",
 					    password: ""
