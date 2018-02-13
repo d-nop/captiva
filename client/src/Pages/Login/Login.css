@@ -1,3 +1,57 @@
-.homePage {
-	background-image: url("../../utils/assets/images/streetPhoto.png");
+.LoginPage {
+	background: url("../../utils/assets/images/interconnection2.jpg") no-repeat center center fixed;
+	background-size: cover;
+  	width:auto;
+  	height:100%;
+}
+
+
+#loginForm {
+	padding-right: -50px; 
+
+}
+
+#logo {
+	padding-left: 120px;
+  padding-top: 30px;
+  
+ }
+
+h1 {
+	font-size: 100px; 
+	color:#ffffff;
+  padding-left: 40px;
+  padding-top: 10px;
+}
+
+#signupButton {
+  
+ font-size: 18px;
+  font-family: 'PT Serif', serif;
+  background-color: #000000;
+  border-color: #cccccc;
+  padding-right:50px;
+  color:#ffffff;
+  
+ 
+}
+
+#loginButton {
+
+  margin-top: 5px;
+  font-size: 18px;
+  font-family: 'PT Serif', serif;
+  background-color: #D42425;
+  border-color: #cccccc;
+  margin-left: 50px;
+  color:#ffffff;
+  padding-right:50px;
+  
+}
+
+#toggleButton {
+  color:#ffffff;
+  font-family: 'PT Serif', serif;
+  font-size: 24px;
+  border-color: #cccccc;
 }

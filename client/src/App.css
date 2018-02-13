@@ -1,16 +1,9 @@
-.navbar {
-  background-color: #bbc4c4;
+html, body, #root {
+  height: 100%;
 }
 
 body {
-  background-image: url("./utils/assets/images/streetPhoto.png");
-  background-size: cover;
-  width:auto;
-  height:auto;
-}
-
-.logo-image {
-  float: center;
+  background-color: #ffffff;
 }
 
 h4 {

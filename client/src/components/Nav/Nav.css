@@ -1,0 +1,21 @@
+#basic-nav-dropdown {
+	font-size: 18px;
+}
+
+.navbar {
+  background-color: #ffffff;
+  width:auto;
+  height:100%;
+}
+
+h2 {
+	color:#ffffff;
+	font-family: 'PT Serif', serif;
+}
+
+#searchBtn {
+  background-color: #7cc444;
+  color:#696969;
+  font-family: 'PT Serif', serif;
+ 
+}
