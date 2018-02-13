@@ -17,6 +17,7 @@
  
 // };
 JWT_SECRET = require("./createToken.js");
+jwt = require("jsonwebtoken");
 
 module.exports = token=>{
   jwt.verify(token, JWT_SECRET, function(err, decoded) {

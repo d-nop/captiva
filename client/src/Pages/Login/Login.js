@@ -71,9 +71,8 @@ class Login extends React.Component {
 					.then(res => {
 						console.log(res);
 						const newObj ={username: res.data.username,
-
-												token: res.data.token};
-						localStorage.setItem("user", newObj);					
+										token: res.data.token};
+						localStorage.setItem("user", JSON.stringify(newObj));					
 					})
 					.catch(err=>console.log(err))
 				this.setState({

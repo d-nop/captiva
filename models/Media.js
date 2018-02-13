@@ -5,40 +5,21 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const MediaSchema = new Schema({
-
     url: {
-
-        type: String,
-        //unique: true,
-
+        type: String
     },
    
     lat: {
-
-        type: String,
-
+        type: String
     },
     long: {
-
-        type: String,
-
+        type: String
     },
     timestamp: {
-
-        type: Date,
+        type: Number,
         default: Date.now
-
     },
-
-    author: {
-
-        type: Schema.Types.ObjectId,
-        ref: "User"
-
-    }
-
 });
 
 const Media = mongoose.model("Media", MediaSchema);
-
 module.exports = Media;

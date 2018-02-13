@@ -45,44 +45,12 @@ const mongoDB_URI = process.env.MONGODB_URI || "mongodb://localhost/captivaDB";
 mongoose.connect(mongoDB_URI, {});
 
 //auth routes
-app.post("/register", (req, res) => {
-  authRoutes.register(req,res);
-});
+app.post("/register",authRoutes.register);
 
 app.post("/login",authRoutes.login);
 
 //# API ROUTES
-app.get("/api/loc/media", function(req, res) {
-
-    if (jwtVerify(req.headers.authToken)) {
-        console.log(req.headers.long);
-        const currLat = req.headers.lat;
-        const currLong = req.headers.long;
-
-        db.Media.find({}).$where({
-                    lat: {
-                        $gte: currLat + 0.00001,
-                        $lte: currLat - 0.00001
-                    }
-                } &&
-                {
-                    long: {
-                        $gte: currLong + 0.0001,
-                        $lte: currLong - 0.0001
-                    }
-                })
-            .then(function(dbMedia) {
-                console.log(dbMedia);
-                res.json(dbMedia);
-            })
-            .catch(function(err) {
-                return res.json(err);
-            });
-    } else {
-        res.send("Unauthorised");
-    }
-
-});
+app.post("/api/loc/media", apiRoutes.getLocal);
 
 // app.get("/api/user/media", function(req, res) {
 //     var token = req.headers['authorisation'];
@@ -120,51 +88,7 @@ app.get("/api/loc/media", function(req, res) {
 // });
 
 //First we will upload to cloudinary, then pass that url to mongoose.
-app.post("/api/media", function(req, res) {
-    const imgFilePath = "./temp/" + req.body.timestamp + ".jpg"
-    
-     db.User.findOne({ username: "jay" })
-      .then(dbUser=>{
-        if (dbUser||!dbUser) { 
-        let incomingImg = req.body.imgString;
-        //let incomingVid = req.body.???
-        incomingImg = incomingImg.split(';base64,').pop();
-        fs.writeFile(imgFilePath, incomingImg, { encoding: 'base64' }, function(err) {
-            console.log('File created');
-        });
-        cloudinary.uploader.upload(imgFilePath,function(result, error)
-             {
-                if (error) {
-                    // console.log(error)
-                } else {
-                  console.log(req.body.loc.coords);
-                    const newMedia = {
-                        url: result.secure_url,
-                        // media_type: result.resource_type,
-                        lat: req.body.loc.coords.latitude,
-                        long: req.body.loc.coords.longitude,
-                        timestamp: req.body.loc.timestamp
-                    };
-                    console.log(newMedia);
-                    db.Media.create(newMedia)
-                        .then(function(dbMedia) {
-                            return db.User.findOneAndUpdate({ _id:user._id} , { $push: { media: dbMedia._id } }, { new: true });
-                        })
-                        .then(function(dbUser) {
-                            res.json(dbUser);
-                        })
-                        .catch(function(err) {
-                            res.json(err);
-                        });
-                };
-                
-            });
-        }
-
-      })
-     
-
-});
+app.post("/api/media",apiRoutes.postNew);
 
 app.get("/api/users", function(req, res) {
 

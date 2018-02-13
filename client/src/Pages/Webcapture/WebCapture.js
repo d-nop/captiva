@@ -2,6 +2,7 @@ import React from 'react';
 import $ from "jquery";
 import {Grid, Col, Row} from 'react-bootstrap';
 import Webcam from 'react-webcam';
+import axios from "axios";
 
 // console.log(Locator);
 
@@ -29,15 +30,15 @@ class WebCapture extends React.Component {
  
    capture = () => {
 
-    const success=coords=>{
-      console.log(coords);                              
+    const success=banana=>{
+      console.log(banana.coords);                              
      const newMedia = {
       imgString:imageSrc,
-      loc:coords,
-      token:this.readCookie()
+      loc:{lat: banana.coords.latitude, lng: banana.coords.longitude, timestamp:banana.timestamp} ,
+      token:localStorage.getItem("token")
     };
     console.log(newMedia);
-    $.post("/api/media", newMedia, function (req,res){
+    axios.post("/api/media", newMedia, function (req,res){
       console.log(res);
 
     });  
@@ -61,16 +62,33 @@ class WebCapture extends React.Component {
   
    
   getMine=()=>{
-   
-    const userToken = this.readCookie("authToken");
-    console.log(userToken);
-    $.ajax({
-    url : "/api/user/media",
-    method : 'GET',
-    beforeSend : function(req) {
-        req.setRequestHeader('Authorisation', userToken);
-    }
-});
+   const success=banana=>{
+      console.log(banana.coords);                              
+     const newMedia = {
+      loc:{lat: banana.coords.latitude, lng: banana.coords.longitude, timestamp:banana.timestamp} ,
+      token:localStorage.getItem("token")
+    };
+    console.log(newMedia);
+    
+    axios.post("/api/loc/media", newMedia, function (req,res){
+      console.log(res);
+
+    });  
+    };
+
+    const err = err=>{
+      console.log(err);
+    };
+
+    const options = {
+      enableHighAccuracy:true,
+      timeout: 5000,
+
+    };
+    navigator.geolocation.getCurrentPosition(success,err,options);
+    // const userToken = this.readCookie("authToken");
+    // console.log(userToken);
+    
   }
  
 render() {

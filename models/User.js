@@ -23,11 +23,11 @@ const UserSchema = new Schema({
         type:String
     },
 
-    media: {
+    media: [{
 
         type: Schema.Types.ObjectId,
         ref: "Media"
-    }
+    }]
 
     
 
