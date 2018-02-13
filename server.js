@@ -217,13 +217,14 @@ app.post("/api/media", function (req, res) {
   cloudinary.uploader.upload(imgFilePath,
     function (result, error) {
       console.log(result);
-      console.log(req.body);
+      console.log(req.body.loc.coords.latitude);
+      console.log(req.body.loc.timestamp);
 
       const newMedia = {
 
         url: result.secure_url,
         media_type: result.resource_type,
-        //timestamp: req.body.timestamp,
+        //timestamp: req.body.loc.timestamp,
         //lat: req.body.lat,
         //long: req.body.long
 
