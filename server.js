@@ -206,7 +206,9 @@ app.post("/api/media", function (req, res) {
 
   cloudinary.uploader.upload(imgFilePath,
     function (result, error) {
-
+      console.log(result);
+      console.log(req.body.lat);
+      
       const newMedia = {
 
         url: result.secure_url,
