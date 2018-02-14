@@ -12,19 +12,14 @@ import Logo from "./components/Logo";
 import WebCapture from "./Pages/Webcapture";
 import Display from "./Pages/Display";
 
+class App extends Component{
 
-class App extends Component {
-  getValues = event => {
-    event.preventDefault();
-    const name = event.target.name;
-    const value = event.target.value;
-    this.setState({ [name]: value });
-  };
+state ={
+  route:"/"
+}
 
-  onSubmit = event => {
-    event.preventDefault();
-    console.log("works fine");
-  };
+
+
 
   render() {
     return (
@@ -40,5 +35,7 @@ class App extends Component {
     )
   }
 
-};
+}
+
+
 export default App;
