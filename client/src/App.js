@@ -9,10 +9,10 @@ import Nav from "./components/Nav";
 import Login from "./Pages/Login";
 
 // import Logo from "./components/Logo";
-import WebCapture from "./Pages/WebCapture/WebCapture.js";
+import WebCapture from "./Pages/WebCapture";
 import react from "react-router-dom";
-import MediaDisplay from "./Pages/MediaDisplay/MediaDisplay.js";
-import Capture from "./Pages/WebCapture/Capture.js"
+import MediaDisplay from "./Pages/MediaDisplay";
+import Capture from "./Pages/WebCapture"
 
 
 
@@ -24,35 +24,11 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/WebCapture" component={WebCapture} />
           <Route exact path="/Capture" component={Capture} />
           <Route exact path="/MediaDisplay" component={MediaDisplay} />
-          <Route component={Login}/>
         </Switch>
       </Router>
     );
   }
 }
 export default App;
-
-// // // // <Col md={12}>
-// // // //             <Login/>
-// // // //             </Col>
-
-// // // <Row>
-// // //             <WebCapture/>
-// // //             </Row>
-
-// // <section>
-// //       <Nav/>
-// //       </section>
-
-//  <Grid>
-
-//           <Row>
-//             <Login/>
-//             </Row>
-//            </Grid>
-//       </div>
-//       <div>
-
