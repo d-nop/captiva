@@ -51,18 +51,20 @@ module.exports.getLocal=(req,res)=>{
   console.log(currLong,currLat);
 
         db.Media.find({})
-        // .$where({
-        //             lat: {
-        //                 $gte: currLat + 0.00001,
-        //                 $lte: currLat - 0.00001
-        //             }
-        //         } &&
-        //         {
-        //             long: {
-        //                 $gte: currLong + 0.0001,
-        //                 $lte: currLong - 0.0001
-        //             }
-        //         })
+        .where({
+                    lat: {
+                        $gte: currLat + 0.001,
+                        $lte: currLat - 0.001
+                    }
+                } &&
+                {
+                    long: {
+                        $gte: currLong + 0.001,
+                        $lte: currLong - 0.001
+                    }
+
+                
+      })
             .then(function(dbMedia) {
               console.log("searched");
                 console.log(dbMedia);
