@@ -43,12 +43,11 @@ html, body, #root {
 
 #loginButton {
 
-  margin-top: 5px;
-  font-size: 18px;
+  font-size: 15px;
   font-family: 'PT Serif', serif;
   background-color: #908EB4;
   border-color: #cccccc;
-  margin-left: 50px;
+  margin-left: ;
   color:#ffffff;
   padding-right:50px;
   

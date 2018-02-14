@@ -1,17 +1,23 @@
-.Background html, body, root {
-	background-color: #908EBA;
+html, body, #root {
+  height: 100%;
+}
+.Background html, body, #root{
+
+	background: url('./plainBackground.jpg') no-repeat center center fixed;
 	background-size: cover;
   	width:auto;
   	height:100%;
 }
 
 .MediaCapture {
-	/*background-color: #000000;*/
-	background-color: #908EBA;
+	
+	/*background-color: #908EBA;*/
 	border-top: #000000;
-	padding-left: 15px;
-	padding-right: 20px; 
-	padding-top: -30px;
+	padding-left: 30px;
+	padding-right: 30px; 
+	margin-top: 200px;
+	padding-top:30px;
+	background-color: #ADADAD;
  	
 }
 
@@ -25,17 +31,23 @@
 	
 #captureVideo {
  margin: auto;
+ background-color: #ADADAD
+ 
    
 }
 
-#myMedia {
+#MyMedia {
 
-  padding-top: 30%; 
+  padding-top:; 
+  background-color: #ADADAD;
+  margin-top:20%;
 
 }
 
 #GeotaggedMedia {
 	float: right;
+	background-color: #ADADAD;
+	margin-top:20%;
 	 
 
 }
@@ -48,7 +60,11 @@
 
 #buttonCapture {
 	margin-left: 40%; 
-	background-color: #908EBA;
+	background-color: #ADADAD;
 
 
+}
+
+#WebCapture{
+	margin-top: -50px;
 }

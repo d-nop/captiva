@@ -30,11 +30,11 @@ class App extends Component {
     return (
       <Router>
         <Switch>
+          <Route exact path="/Nav" component={Nav} />
           <Route exact path="/" component={Login} />
           <Route exact path="/WebCapture" component={WebCapture} />
           <Route exact path="/Capture" component={Capture} />
           <Route exact path="/MediaDisplay" component={MediaDisplay} />
-          <Route component={Login}/>
         </Switch>
       </Router>
     );
@@ -42,23 +42,3 @@ class App extends Component {
 }
 export default App;
 
-// // // // <Col md={12}>
-// // // //             <Login/>
-// // // //             </Col>
-
-// // // <Row>
-// // //             <WebCapture/>
-// // //             </Row>
-
-// // <section>
-// //       <Nav/>
-// //       </section>
-
-//  <Grid>
-
-//           <Row>
-//             <Login/>
-//             </Row>
-//            </Grid>
-//       </div>
-//       <div>

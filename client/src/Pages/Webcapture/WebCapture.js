@@ -1,7 +1,7 @@
 import React from 'react';
 import {Grid, Col, Row} from 'react-bootstrap';
 import Webcam from 'react-webcam';
-import Capturevideo from './dogPaw.png';
+import Capturevideo from './PawLogo2.png';
 import MyMedia from './myMedia.png';
 import GeoTagged from './GeoTaggedIcon.png';
 

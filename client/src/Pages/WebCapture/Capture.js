@@ -8,29 +8,39 @@ import "./Capture.css"
 import API from '../../utils/API';
 import { Link } from 'react-router-dom';
 import WebCapture from './WebCapture.js';
-
-
+import Background from './plainBackground.jpg';
+import Nav from '../../components/Nav/Nav.js'
 
 class Capture extends Component {
   render() {
     return (
-            <div className ="container Background">
-             <div className ="row">
-              <div className ="col-xs-12">
-              <WebCapture />
-            </div>
-            </div>
-            <div className ="row mediaButtons">
-                <div className ="col-xs-6">
-                    <img src={MyMedia} id="MyMedia"alt="myMedia Icon" onClick={this.capture} My Media/>
-                </div>
-                <div className ="col-xs-6" >
-                <img src={GeoTagged} id="GeotaggedMedia" alt= "geotagged Media" OnClick={this.capture}
-               Geotagged Media/>
-      
-                </div>
-              </div>
-  </div>
-    )}
+<div>
+    <section>
+        <Nav/>
+    </section>
+<div className ="container Background">        
+<Grid>
+        <Row id="WebCapture">
+          <Col xs={12}>
+             <WebCapture /> 
+          </Col>  
+        </Row>
+    <Row>
+        <Col xs={6}>
+           <button id="MyMedia"><img src ={MyMedia} alt="My Media" onClick={this.MyMedia} GetMyMedia/></button>
+        </Col>
+       
+        <Col xs={6}> 
+          <button id="GeotaggedMedia"><img src={GeoTagged} alt="geotagged Media" onClick={this.GeoTagged} GetGeotaggedMedia/></button>
+        </Col> 
+    </Row> 
+ </Grid>   
+</div>
+</div>
+
+)
+    } 
+
+    
 };
 export default Capture;

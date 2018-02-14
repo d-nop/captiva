@@ -1,21 +1,59 @@
 #basic-nav-dropdown {
 	font-size: 18px;
 }
-
 .navbar {
-  background-color: #ffffff;
-  width:auto;
-  height:100%;
-}
+  background-color:  #908EB4;
+ }
 
 h2 {
 	color:#ffffff;
 	font-family: 'PT Serif', serif;
 }
 
-#searchBtn {
-  background-color: #7cc444;
-  color:#696969;
-  font-family: 'PT Serif', serif;
  
+.navbar-text {
+	font-family: 'Averia Serif Libre', cursive;
+	font-size: 30px;
+	color:#ffffff;
+}
+
+#captureVideo {
+ margin: auto;
+ background-color: #ADADAD;
+  height:34px;
+  width:34px;
+ 
+   
+}
+
+#MyMedia {
+
+  padding-top:; 
+  background-color: #ADADAD;
+  margin-top: -50px;
+  
+
+
+}
+
+#GeotaggedMedia {
+
+background-color: #ADADAD;
+margin-top:20%;
+
+ 
+
+}
+
+.mediaButtons {
+
+
+
+}
+
+#buttonCapture {
+background-color: #ADADAD;
+
+
+
 }
