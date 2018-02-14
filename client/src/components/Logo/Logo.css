@@ -1,0 +1,47 @@
+#logo {
+  margin-left:-5%;
+  height:70%;
+  width:70%;
+
+}
+
+h1 {
+	font-size: 100px; 
+	color:#D42425;
+  /*margin-left: 40%;*/
+  text-align: center;
+  
+
+}
+
+#signupButton {
+  
+ font-size: 18px;
+  font-family: 'PT Serif', serif;
+  background-color: #000000;
+  border-color: #cccccc;
+  padding-right:50px;
+  color:#ffffff;
+  
+ 
+}
+
+#loginButton {
+
+  margin-top: 5px;
+  font-size: 18px;
+  font-family: 'PT Serif', serif;
+  background-color: #D42425;
+  border-color: #cccccc;
+  margin-left: 50px;
+  color:#ffffff;
+  padding-right:50px;
+  
+}
+
+#toggleButton {
+  color:#ffffff;
+  font-family: 'PT Serif', serif;
+  font-size: 24px;
+  border-color: #cccccc;
+}

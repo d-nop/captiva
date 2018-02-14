@@ -165,4 +165,8 @@ class Login extends React.Component {
     );
   }
 }
+<<<<<<< HEAD
 export default Login;
+=======
+export default Login;
+>>>>>>> 2f78a1e05f6df9b435ae3c822e792513cd1a2760

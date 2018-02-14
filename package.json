@@ -8,7 +8,8 @@
     "client": "node scripts/start-client.js",
     "start": "concurrently \"nodemon server.js\" \"npm run client\"",
     "build": "node scripts/build.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd client && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "cloudinary": "^1.9.1",
