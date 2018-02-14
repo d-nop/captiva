@@ -4,6 +4,8 @@ import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import { ButtonToolbar } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import logo from "../../utils/assets/images/PawLogo.png";
+import "./Logo.css"
 
 const Logo = props => {
 	const onSubmit = event => {
@@ -12,13 +14,19 @@ const Logo = props => {
 	};
 
 	return (
-		<div>
-			<Grid>
-				<Row>
-				<button><img src={".../utils/assets/images/clickablePawTransparent.png"} onSubmit={this.submit}/></button>
-				</Row>
-			</Grid>
-		</div>
+    
+		<Row>
+  			<Col xs={12}>
+  			   <Row center="xs">
+      		      <img src={logo} onSubmit={this.submit} id="logo"/>
+      			</Row>
+      			 <Row center="xs">
+      		      <h1>Captiva</h1>
+      			</Row>
+      			   			
+  			</Col>
+  		</Row>
+		
 	);
 };
 

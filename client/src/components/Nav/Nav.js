@@ -4,8 +4,8 @@ import {Form} from "react-bootstrap";
 import {FormGroup} from "react-bootstrap";
 import {FormControl} from "react-bootstrap";
 import {Button} from "react-bootstrap";
-// import Signin from "./Signin.js";
-// import Register from "./Register.js";
+import logo from "../../utils/assets/images/clickablePawTransparent.png";
+import "./Nav.css"
 
   const Nav = ( props ) => {
 
@@ -16,23 +16,16 @@ import {Button} from "react-bootstrap";
 
  return(
 
- 	<div>
-    <Navbar>
+ 	<div >
+    <Navbar id="navbar" > 
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="#home"></a>
-          <img src="../assets/images/geoLocationIcon.png" alt="geolocation"width="34" height="34"/>
+          <a href="#home"><img src= {logo} alt="geolocation"width="35" height="35"/> <h2>Captiva</h2></a>
       </Navbar.Brand>
       <Navbar.Toggle />
       </Navbar.Header>
-      <Navbar.Collapse>
-      <Navbar.Form pullLeft>
-        <FormGroup>
-        <FormControl type="text" placeholder="Search" />
-      </FormGroup>{' '}
-      <Button id="searchBtn" type="submit" onClick= {onSubmit}>Submit</Button>
-    </Navbar.Form>
-  </Navbar.Collapse>
+      <Navbar.Collapse> {" "}
+      </Navbar.Collapse>
 </Navbar>
 </div>
 

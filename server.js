@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const db = require("./models");
 const cloudinary = require("cloudinary");
-const cloudinaryKeys = require("./cloudinaryKeys");
+//const cloudinaryKeys = require("./cloudinaryKeys");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
 const base64 = require("./base64");
@@ -22,11 +22,28 @@ const apiRoutes=require("./controller/apiRoutes");
 
 
 
+// const LocalStrategy = require("./auth/authStrategy");
+//const verifyToken = require("./auth/verifyToken");
+//const geoloc = require("./client/src/utils/Geolocation/geoLocation");
+//const createToken = require("./auth/createToken");
+//const jwt = require ("jsonwebtoken");
+
 //Configuring Cloudinary
 cloudinary.config({
+
     cloud_name: cloudinaryKeys.cloud_name,
     api_key: cloudinaryKeys.cloudinary_api_key,
     api_secret: cloudinaryKeys.cloudinary_api_secret
+});
+
+cloudinary.config({
+
+
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+
+
 });
 
 
@@ -39,15 +56,20 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 //Configuring mongoose to use promises.
 mongoose.Promise = Promise;
 const mongoDB_URI = process.env.MONGODB_URI || "mongodb://localhost/captivaDB";
 mongoose.connect(mongoDB_URI, {});
 
+
 //auth routes
 app.post("/register",authRoutes.register);
 
+
 app.post("/login",authRoutes.login);
+
+
 
 //# API ROUTES
 app.post("/api/loc/media", apiRoutes.getLocal);
@@ -128,4 +150,5 @@ app.get("*", function(req, res) {
 
 app.listen(PORT, function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
+
 });

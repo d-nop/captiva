@@ -4,9 +4,11 @@ import {Grid, Col, Row} from 'react-bootstrap';
 import Webcam from 'react-webcam';
 import axios from "axios";
 
-// console.log(Locator);
+import Capturevideo from './dogPaw.png';
+import MyMedia from './myMedia.png';
+import GeoTagged from './GeoTaggedIcon.png';
 
-//console.log(position);
+
 
 class WebCapture extends React.Component {
   setRef = (webcam) => {
@@ -38,10 +40,18 @@ class WebCapture extends React.Component {
       token:localStorage.getItem("token")
     };
     console.log(newMedia);
+<<<<<<< HEAD
     axios.post("/api/media", newMedia, function (req,res){
+=======
+
+  
+
+    $.post("/api/media", newMedia, function (req,res){
+>>>>>>> origin/layout4
       console.log(res);
 
     });  
+
     };
 
     const err = err=>{
@@ -57,6 +67,15 @@ class WebCapture extends React.Component {
     const imageSrc = this.webcam.getScreenshot();
     navigator.geolocation.getCurrentPosition(success,err,options);
    
+
+  };
+
+   onClick = event => {
+    event.preventDefault();
+    console.log("works fine");
+  };
+
+
   }
 
   
@@ -91,17 +110,19 @@ class WebCapture extends React.Component {
     
   }
  
+
 render() {
 return (
- <div>
-  <Grid>
-     <Row style={{ borderColor: "white", borderWidth: 6 }}>
+ <div class= "MediaCapture">
+   <Row around="xs">
      <Col xs={12}>
         <Webcam
+          id="webcam"
           audio={false}
-          height={350}
+          height={"100%"}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
+<<<<<<< HEAD
           width={400}
         />
         <button id="myMedia" onClick={this.getMine}>
@@ -113,12 +134,22 @@ return (
         <button id="locMedia" onClick={this.getLocal}>
         Local Footprints
         </button>
+=======
+
+          width={"100%"}
+          />
+          <button id="buttonCapture"><img src = {Capturevideo} onClick={this.Capturevideo} Capture photo/>
+          </button>
+
+
+>>>>>>> origin/layout4
         </Col>
     </Row>
-  </Grid>
 </div>
     );  
   }
 }
 
 export default WebCapture;
+
+

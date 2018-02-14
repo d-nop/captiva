@@ -14,9 +14,6 @@ import react from "react-router-dom";
 import MediaDisplay from "./Pages/MediaDisplay";
 import Capture from "./Pages/WebCapture"
 
-
-
-
 class App extends Component {
   render() {
     return (
@@ -26,9 +23,34 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <Route exact path="/Capture" component={Capture} />
           <Route exact path="/MediaDisplay" component={MediaDisplay} />
+
         </Switch>
       </Router>
     );
   }
 }
+
 export default App;
+
+// // // // <Col md={12}>
+// // // //             <Login/>
+// // // //             </Col>
+
+// // // <Row>
+// // //             <WebCapture/>
+// // //             </Row>
+
+// // <section>
+// //       <Nav/>
+// //       </section>
+
+//  <Grid>
+
+//           <Row>
+//             <Login/>
+//             </Row>
+//            </Grid>
+//       </div>
+//       <div>
+
+>>>>>>> origin/layout4

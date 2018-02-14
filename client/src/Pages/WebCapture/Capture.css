@@ -1,0 +1,54 @@
+.Background html, body, root {
+	background-color: #908EBA;
+	background-size: cover;
+  	width:auto;
+  	height:100%;
+}
+
+.MediaCapture {
+	/*background-color: #000000;*/
+	background-color: #908EBA;
+	border-top: #000000;
+	padding-left: 15px;
+	padding-right: 20px; 
+	padding-top: -30px;
+ 	
+}
+
+#webcam { 
+	border-color:#000000;
+	border-width: 6px;
+	margin-left: 200px; 
+	height: 100%;
+	width: 100%;
+}
+	
+#captureVideo {
+ margin: auto;
+   
+}
+
+#myMedia {
+
+  padding-top: 30%; 
+
+}
+
+#GeotaggedMedia {
+	float: right;
+	 
+
+}
+
+.mediaButtons {
+	padding-top: 75%; 
+
+
+}
+
+#buttonCapture {
+	margin-left: 40%; 
+	background-color: #908EBA;
+
+
+}
