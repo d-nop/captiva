@@ -12,6 +12,17 @@ import WebCapture from './WebCapture.js';
 
 
 class Capture extends Component {
+
+   componentDidMount=()=>{
+    document.body.style={
+      backgroundSize: cover;
+      width:"auto";
+      height:"auto";
+      backgroundImage: url("../../utils/assets/images/pawprints.png")
+}
+
+    }
+  
   render() {
     return (
             <div className ="container Background">

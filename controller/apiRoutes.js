@@ -67,7 +67,12 @@ module.exports.getLocal=(req,res)=>{
             .then(function(dbMedia) {
               console.log("searched");
                 console.log(dbMedia);
-                res.json(dbMedia);
+                let newArr=[];
+                dbMedia.forEach(element=>{
+                  newArr.push(element.url);
+                })
+                console.log(newArr);
+                res.json(newArr);
             })
             .catch(function(err) {
                 return res.json(err);
@@ -89,6 +94,7 @@ module.exports.getLocal=(req,res)=>{
 }
 
 module.exports.userMedia =(req,res)=>{
+  console.log("anything");
   console.log(req.params,req.body)
    db.User.findOne({ username: req.params.username})
       .populate("Media")

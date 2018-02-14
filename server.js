@@ -100,7 +100,7 @@ app.post("/api/media",apiRoutes.postNew);
 
 app.get("/admin/users", adminRoutes.allUsers);
 
-app.get("/api/user/:username", apiRoutes.userMedia);
+app.post("/api/user/:username", apiRoutes.userMedia);
 
 
 
