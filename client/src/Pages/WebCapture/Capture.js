@@ -12,11 +12,22 @@ import WebCapture from './WebCapture.js';
 
 
 class Capture extends Component {
+
+   componentDidMount=()=>{
+    document.body.style={
+      backgroundSize: cover;
+      width:"auto";
+      height:"auto";
+      backgroundImage: url("../../utils/assets/images/pawprints.png")
+}
+
+    }
+  
   render() {
     return (
             <div className ="container Background">
              <div className ="row">
-              <div className ="col-xs-12">
+              <div className ="col-xs-12 col-md-8">
               <WebCapture />
             </div>
             </div>
@@ -24,7 +35,7 @@ class Capture extends Component {
                 <div className ="col-xs-6">
                     <img src={MyMedia} id="MyMedia"alt="myMedia Icon" onClick={this.capture} My Media/>
                 </div>
-                <div className ="col-xs-6" >
+                <div className ="col-xs-6 col-offset-5" >
                 <img src={GeoTagged} id="GeotaggedMedia" alt= "geotagged Media" OnClick={this.capture}
                Geotagged Media/>
       

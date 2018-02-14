@@ -13,6 +13,7 @@ import WebCapture from "./Pages/WebCapture";
 import react from "react-router-dom";
 import MediaDisplay from "./Pages/MediaDisplay";
 import Capture from "./Pages/WebCapture"
+import Display from "./Pages/Display";
 
 
 
@@ -30,7 +31,9 @@ state={
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/Capture" component={Capture} />
-          <Route exact path="/Display" component={MediaDisplay} />
+
+          <Route exact path="/Display" component={Display} />
+
         </Switch>
       </Router>
     );
