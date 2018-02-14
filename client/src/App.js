@@ -14,6 +14,7 @@ import react from "react-router-dom";
 import MediaDisplay from "./Pages/MediaDisplay";
 import Capture from "./Pages/WebCapture"
 
+
 class App extends Component {
   render() {
     return (
@@ -31,6 +32,7 @@ class App extends Component {
 }
 
 export default App;
+
 
 // // // // <Col md={12}>
 // // // //             <Login/>
@@ -53,4 +55,4 @@ export default App;
 //       </div>
 //       <div>
 
->>>>>>> origin/layout4
+
