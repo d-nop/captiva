@@ -40,14 +40,8 @@ class WebCapture extends React.Component {
       token:localStorage.getItem("token")
     };
     console.log(newMedia);
-<<<<<<< HEAD
+
     axios.post("/api/media", newMedia, function (req,res){
-=======
-
-  
-
-    $.post("/api/media", newMedia, function (req,res){
->>>>>>> origin/layout4
       console.log(res);
 
     });  
@@ -76,7 +70,7 @@ class WebCapture extends React.Component {
   };
 
 
-  }
+  
 
   
    
@@ -91,7 +85,7 @@ class WebCapture extends React.Component {
     
     axios.post("/api/loc/media", newMedia, function (req,res){
       console.log(res);
-
+      this.props.history.push("/display");
     });  
     };
 
@@ -104,6 +98,7 @@ class WebCapture extends React.Component {
       timeout: 5000,
 
     };
+
     navigator.geolocation.getCurrentPosition(success,err,options);
     // const userToken = this.readCookie("authToken");
     // console.log(userToken);
@@ -111,9 +106,9 @@ class WebCapture extends React.Component {
   }
  
 
-render() {
+render(){
 return (
- <div class= "MediaCapture">
+ <div className= "MediaCapture">
    <Row around="xs">
      <Col xs={12}>
         <Webcam
@@ -122,6 +117,7 @@ return (
           height={"100%"}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
+<<<<<<< HEAD
 <<<<<<< HEAD
           width={400}
         />
@@ -143,6 +139,15 @@ return (
 
 
 >>>>>>> origin/layout4
+=======
+
+          width={"100%"}
+          />
+          <button id="buttonCapture"><img src = {Capturevideo} onClick={this.capture} Capture photo/>
+          </button>
+
+
+>>>>>>> 9f9ef9469fda48653fbf3a53537b117dde7d8d4d
         </Col>
     </Row>
 </div>
