@@ -11,7 +11,7 @@ module.exports.register=(req,res)=>{
         .then(dbUser => {
             if (dbUser) {
                 // res.json(dbUser);
-                res.send("user already exists, please login");
+                res.sendStatus(208);
             } else {
                 console.log(req.body);
                 const user = new db.User(req.body);
@@ -27,6 +27,7 @@ module.exports.register=(req,res)=>{
                         	token:authToken
                         };
                         console.log(newUser);
+                        window.location="/capture";
                         res.json(newUser);
                         //redirect to camera
                     };

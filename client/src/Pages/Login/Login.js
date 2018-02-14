@@ -5,6 +5,7 @@ import axios from "axios";
 import PawLogo from "../../utils/assets/images/PawLogo.png";
 import Background from "../../utils/assets/images/streetPhoto.png";
 import "./Login.css";
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import {
   Navbar,
@@ -24,7 +25,8 @@ class Login extends React.Component {
     formId:"loginForm",
     nameholder:"Your username",
     passholder:"Your Password",
-    buttonVal: "Log In"
+    buttonVal: "Log In",
+    redirect:false
   }
 
   handleSignup=event=>{
@@ -61,7 +63,6 @@ class Login extends React.Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     console.log(event.target.id);
-    
 
     switch(event.target.id){
 
@@ -74,9 +75,15 @@ class Login extends React.Component {
         axios.post ("/login", loginCreds)
           .then(res => {
             console.log(res);
+            if(res.status===200){
             const newObj ={username: res.data.username,
                     token: res.data.token};
-            localStorage.setItem("user", JSON.stringify(newObj));         
+            localStorage.setItem("user", JSON.stringify(newObj));
+            this.props.history.push("/capture");
+        	}
+        	else if (res.status===208){
+        		alert("User already exists...please log in");
+        	}         
           })
           .catch(err=>console.log(err))
         this.setState({
@@ -93,8 +100,14 @@ class Login extends React.Component {
         axios.post ("/register",signupCreds)
           .then(res => {
               console.log(res);
+              if(res.status===200){
               localStorage.setItem("username", res.username);
-              localStorage.setItem("token", res.token);         
+              localStorage.setItem("token", res.token); 
+              this.props.history.push("/capture"); 
+              }
+              else if (res.status===401){
+        		alert("Wrong password");
+        	}            
           })
           .catch(err=>console.log(err))
         this.setState({
@@ -107,7 +120,10 @@ class Login extends React.Component {
   }
 
   render () {
+   
+	     
     return (
+		
        <div className="LoginPage">
         <div>
           <Grid>
@@ -116,7 +132,7 @@ class Login extends React.Component {
                 <Form
                   inline
                   onSubmit={this.handleSubmit}
-                  id="loginForm"
+                  id={this.state.formId}
                 >
                   <FormGroup controlId="formInlineName">
                     {" "}
@@ -165,8 +181,5 @@ class Login extends React.Component {
     );
   }
 }
-<<<<<<< HEAD
 export default Login;
-=======
-export default Login;
->>>>>>> 2f78a1e05f6df9b435ae3c822e792513cd1a2760
+

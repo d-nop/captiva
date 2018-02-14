@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch,Redirect } from "react-router-dom";
 // import {Grid, Row, Col} from 'react-boostrap';
 import { CSS, Grid, Row, Col } from "react-bootstrap";
 import logo from "./logo.svg";
@@ -16,16 +16,21 @@ import Capture from "./Pages/WebCapture"
 
 
 
-
 class App extends Component {
+
+state={
+  redirect:false
+}
+
   render() {
+  
     return (
 
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/Capture" component={Capture} />
-          <Route exact path="/MediaDisplay" component={MediaDisplay} />
+          <Route exact path="/Display" component={MediaDisplay} />
         </Switch>
       </Router>
     );

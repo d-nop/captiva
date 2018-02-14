@@ -1,3 +1,4 @@
+
 const bodyParser = require("body-parser");
 const express = require("express");
 const path = require("path");
@@ -7,10 +8,9 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const db = require("./models");
 const cloudinary = require("cloudinary");
-//const cloudinaryKeys = require("./cloudinaryKeys");
+const cloudinaryKeys = require("./cloudinaryKeys");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
-const base64 = require("./base64");
 // const LocalStrategy = require("./auth/authStrategy");
 const jwtVerify = require("./auth/verifyToken");
 const geoloc = require("./client/src/utils/Geolocation/geolocation");
@@ -35,15 +35,15 @@ cloudinary.config({
     api_secret: cloudinaryKeys.cloudinary_api_secret
 });
 
-cloudinary.config({
+// cloudinary.config({
 
 
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET
+//   cloud_name: process.env.CLOUD_NAME,
+//   api_key: process.env.API_KEY,
+//   api_secret: process.env.API_SECRET
 
 
-});
+// });
 
 // cloudinary.config({
 
