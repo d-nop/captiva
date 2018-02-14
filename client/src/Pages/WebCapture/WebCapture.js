@@ -152,4 +152,3 @@ return (
 
 export default WebCapture;
 
-
