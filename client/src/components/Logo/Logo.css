@@ -1,23 +1,29 @@
 #logo {
-
-	margin-left: 300px;
+  margin-left:-5%;
+  height:70%;
+  width:70%;
 
 }
 
 h1 {
 	font-size: 100px; 
-	color:#ffffff;
+	color:#D42425;
+  /*margin-left: 40%;*/
+  text-align: center;
+  
+
 }
 
 #signupButton {
-  height: 35px;
-  margin-top: 5px;
-  font-size: 18px;
+  
+ font-size: 18px;
   font-family: 'PT Serif', serif;
-  background-color: #1cc4ec;
+  background-color: #000000;
   border-color: #cccccc;
-  margin-left: 50px;
-  background-color: #1cc4ec;
+  padding-right:50px;
+  color:#ffffff;
+  
+ 
 }
 
 #loginButton {
@@ -25,16 +31,17 @@ h1 {
   margin-top: 5px;
   font-size: 18px;
   font-family: 'PT Serif', serif;
-  background-color: #7cc444;
+  background-color: #D42425;
   border-color: #cccccc;
   margin-left: 50px;
-  color:#696969;
- 
+  color:#ffffff;
+  padding-right:50px;
+  
 }
 
 #toggleButton {
   color:#ffffff;
   font-family: 'PT Serif', serif;
-  font-size: 18px;
+  font-size: 24px;
   border-color: #cccccc;
 }

@@ -1,3 +1,62 @@
-.homePage {
-	background-image: url("../../utils/assets/images/streetPhoto.png");
+html, body, #root {
+  height: 100%;
+}
+
+.LoginPage {
+	background: url("../../utils/assets/images/streetPhoto.png") no-repeat center center fixed;
+	background-size: cover;
+  width:auto;
+  height:100%;
+}
+
+
+#loginForm {
+	padding-right: -50px; 
+
+}
+
+#logo {
+	height:25%;
+  width:25%;
+  margin-top: 5%;
+  margin-left: 38%;  
+ }
+
+#BrandName {
+	font-size: 70px; 
+  text-align: center;
+	color:white; 
+  font-family: 'Averia Serif Libre', cursive;
+}
+
+#signupButton {
+  
+ font-size: 18px;
+  font-family: 'PT Serif', serif;
+  background-color: #D03E27;
+  border-color: #cccccc;
+  padding-right:50px;
+  color:#ffffff;
+  
+ 
+}
+
+#loginButton {
+
+  margin-top: 5px;
+  font-size: 18px;
+  font-family: 'PT Serif', serif;
+  background-color: #908EB4;
+  border-color: #cccccc;
+  margin-left: 50px;
+  color:#ffffff;
+  padding-right:50px;
+  
+}
+
+#toggleButton {
+  color:#ffffff;
+  font-family: 'PT Serif', serif;
+  font-size: 24px;
+  border-color: #cccccc;
 }
