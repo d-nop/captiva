@@ -9,77 +9,48 @@ import MyMedia from './myMedia.png';
 import GeoTagged from './GeoTaggedIcon.png';
 
 
-
 class WebCapture extends React.Component {
   setRef = (webcam) => {
     this.webcam = webcam;
   }
-
-
-  readCookie=()=> {
-      const nameEQ = "authToken=";
-      const ca = document.cookie.split(";");
-      for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === " ") c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) {
-          return c.substring(nameEQ.length, c.length);
-        }
-      }
-      return null;
-    }
-
  
    capture = () => {
-
     const success=banana=>{
       console.log(banana.coords);                              
      const newMedia = {
       imgString:imageSrc,
       loc:{lat: banana.coords.latitude, lng: banana.coords.longitude, timestamp:banana.timestamp} ,
-      token:localStorage.getItem("token")
+      token:localStorage.getItem("user")
     };
     console.log(newMedia);
 
     axios.post("/api/media", newMedia, function (req,res){
       console.log(res);
+      this.props.history.push("/display");
+    })  
 
-    });  
-
-    };
+    }
 
     const err = err=>{
       console.log(err);
-    };
+    }
 
     const options = {
       enableHighAccuracy:true,
       timeout: 5000,
 
-    };
+    }
 
     const imageSrc = this.webcam.getScreenshot();
     navigator.geolocation.getCurrentPosition(success,err,options);
-   
-
-  };
-
-   onClick = event => {
-    event.preventDefault();
-    console.log("works fine");
-  };
-
-
-  
-
-  
-   
-  getMine=()=>{
+  }
+    
+  getLoc=()=>{
    const success=banana=>{
       console.log(banana.coords);                              
      const newMedia = {
       loc:{lat: banana.coords.latitude, lng: banana.coords.longitude, timestamp:banana.timestamp} ,
-      token:localStorage.getItem("token")
+      token:localStorage.getItem("user")
     };
     console.log(newMedia);
     
@@ -100,9 +71,17 @@ class WebCapture extends React.Component {
     };
 
     navigator.geolocation.getCurrentPosition(success,err,options);
-    // const userToken = this.readCookie("authToken");
-    // console.log(userToken);
-    
+  }
+
+  getMine=()=>{
+    const username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    console.log(username,token);
+    axios.post("/api/user/"+username, token)
+      .then(res=>{
+        console.log(res);
+        this.props.history.push("/display");
+      })
   }
  
 
@@ -114,40 +93,23 @@ return (
         <Webcam
           id="webcam"
           audio={false}
-          height={"100%"}
+          height={"90%"}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-<<<<<<< HEAD
-<<<<<<< HEAD
-          width={400}
+          width={"100%"}
         />
-        <button id="myMedia" onClick={this.getMine}>
-        My footprint
-        </button>
-        <button id="captureVideo" onClick={this.capture}>
-        Capture photo
-        </button>
-        <button id="locMedia" onClick={this.getLocal}>
-        Local Footprints
-        </button>
-=======
-
-          width={"100%"}
-          />
-          <button id="buttonCapture"><img src = {Capturevideo} onClick={this.Capturevideo} Capture photo/>
-          </button>
-
-
->>>>>>> origin/layout4
-=======
-
-          width={"100%"}
-          />
-          <button id="buttonCapture"><img src = {Capturevideo} onClick={this.capture} Capture photo/>
-          </button>
-
-
->>>>>>> 9f9ef9469fda48653fbf3a53537b117dde7d8d4d
+          <div className ="row mediaButtons">
+                <button className ="col-xs-4">
+                    <img src={MyMedia} id="MyMedia"alt="Your Footprints" onClick={this.getMine} />
+                </button>
+                <button className ="col-xs-4" id="buttonCapture">
+                  <img src = {Capturevideo} onClick={this.capture} alt ="Add your footprint"/>
+                </button>
+                <button className ="col-xs-4" >
+                  <img src={GeoTagged} id="GeotaggedMedia" alt= "Local Footprints" OnClick={this.getLoc} />
+      
+                </button>
+            </div>
         </Col>
     </Row>
 </div>

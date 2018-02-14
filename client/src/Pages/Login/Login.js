@@ -79,7 +79,8 @@ class Login extends React.Component {
             if(res.status===200){
             const newObj ={username: res.data.username,
                     token: res.data.token};
-            localStorage.setItem("user", JSON.stringify(newObj));
+            localStorage.setItem("user", res.data.username);
+            localStorage.setItem("token", res.data.token);
             this.props.history.push("/capture");
         	}
         	else if (res.status===208){
@@ -102,8 +103,8 @@ class Login extends React.Component {
           .then(res => {
               console.log(res);
               if(res.status===200){
-              localStorage.setItem("username", res.username);
-              localStorage.setItem("token", res.token); 
+              localStorage.setItem("username", res.data.username);
+              localStorage.setItem("token", res.data.token); 
               this.props.history.push("/capture"); 
               }
               else if (res.status===401){
