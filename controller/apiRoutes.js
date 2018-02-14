@@ -70,7 +70,9 @@ module.exports.getLocal=(req,res)=>{
                 let newArr=[];
                 dbMedia.forEach(element=>{
                   newArr.push(element.url);
-                })
+                  
+                });
+
                 console.log(newArr);
                 res.json(newArr);
             })

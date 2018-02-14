@@ -29,11 +29,19 @@ class Images extends Component {
     
     axios.post("/api/loc/media", newMedia)
         .then(res=>{
+            let newArray = res.data.map((individualItem) => {
+                return {src: individualItem};
+            })
+            console.log(newArray);
+            this.setState({
+                image:newArray
+            })
+            console.log(this.state.image);
             // console.log(res.data);
             // this.setState(image:{res.data.map(x=>{src:x})});
             // console.log(this.state.image);
             // this.state.image={srcSet:res.data};
-            const lighboxSet = {srcSet:res.data}
+            // const lighboxSet = {srcSet:res.data}
 
             //  this.state.image.push({src:res.data.url})
             // console.log(this.state.image);
@@ -76,7 +84,10 @@ class Images extends Component {
     //         })
     //         .catch(err => console.log(err))
     //    }
+closeLightbox=()=>{
 
+    console.log("lightboxIsOpen");
+}
 
 
 
