@@ -7,27 +7,20 @@ import "./App.css";
 // import Photo from './components/Pages/Photo';
 import Nav from "./components/Nav";
 import Login from "./Pages/Login";
+
 // import Logo from "./components/Logo";
 import WebCapture from "./Pages/WebCapture/WebCapture.js";
 import react from "react-router-dom";
 import MediaDisplay from "./Pages/MediaDisplay/MediaDisplay.js";
 import Capture from "./Pages/WebCapture/Capture.js"
 
+
+
+
 class App extends Component {
-  getValues = event => {
-    event.preventDefault();
-    const name = event.target.name;
-    const value = event.target.value;
-    this.setState({ [name]: value });
-  };
-
-  onSubmit = event => {
-    event.preventDefault();
-    console.log("works fine");
-  };
-
   render() {
     return (
+
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
@@ -62,3 +55,4 @@ export default App;
 //            </Grid>
 //       </div>
 //       <div>
+

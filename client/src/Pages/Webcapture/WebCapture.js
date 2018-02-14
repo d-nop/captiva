@@ -1,9 +1,12 @@
 import React from 'react';
+import $ from "jquery";
 import {Grid, Col, Row} from 'react-bootstrap';
 import Webcam from 'react-webcam';
+
 import Capturevideo from './dogPaw.png';
 import MyMedia from './myMedia.png';
 import GeoTagged from './GeoTaggedIcon.png';
+
 
 
 class WebCapture extends React.Component {
@@ -11,39 +14,75 @@ class WebCapture extends React.Component {
     this.webcam = webcam;
   }
  
-  capture = () => {
-    let posit;
+   capture = () => {
 
-    let success=coords=>{
+    const success=coords=>{
       console.log(coords);                              
      const newMedia = {
       imgString:imageSrc,
       loc:coords
     };
     console.log(newMedia);
+
   
+
+    $.post("/api/media", newMedia, function (req,res){
+      console.log(res);
+
+    });  
+
     };
 
-    let err = err=>{
+    const err = err=>{
       console.log(err);
     };
 
-    let options = {
+    const options = {
       enableHighAccuracy:true,
-      timeout: 10000,
+      timeout: 5000,
 
     };
 
     const imageSrc = this.webcam.getScreenshot();
     navigator.geolocation.getCurrentPosition(success,err,options);
-    
    
+
   };
 
    onClick = event => {
     event.preventDefault();
     console.log("works fine");
   };
+
+
+  }
+
+  readCookie=(name)=> {
+      const nameEQ = name + "=";
+      const ca = document.cookie.split(";");
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === " ") c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) {
+          return c.substring(nameEQ.length, c.length);
+        }
+      }
+      return null;
+    }
+   
+  getMine=()=>{
+   
+    const userToken = this.readCookie("authToken");
+    console.log(userToken);
+    $.ajax({
+    url : "/api/user/media",
+    method : 'GET',
+    beforeSend : function(req) {
+        req.setRequestHeader('Authorisation', userToken);
+    }
+});
+  }
+ 
 
 render() {
 return (
@@ -56,10 +95,13 @@ return (
           height={"100%"}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
+
           width={"100%"}
           />
           <button id="buttonCapture"><img src = {Capturevideo} onClick={this.Capturevideo} Capture photo/>
           </button>
+
+
         </Col>
     </Row>
 </div>

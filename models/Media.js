@@ -25,16 +25,17 @@ const MediaSchema = new Schema({
     },
     timestamp: {
 
-        type: String,
+        type: Date,
+        default: Date.now
 
     },
 
-    // author: {
+    author: {
 
-    //     type: Schema.Types.ObjectId,
-    //     ref: "User"
+        type: Schema.Types.ObjectId,
+        ref: "User"
 
-    // }
+    }
 
 });
 

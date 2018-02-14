@@ -18,15 +18,18 @@ class Login extends React.Component {
 	state = {
 		username: "",
 		password: "",
+
 		submitId: "loginButton",
 		nameholder: "Your username",
 		passholder: "Your Password",
 		buttonVal: "Log In"
-	};
+	}
+
 
 	handleSignup = event => {
 		if (this.state.submitId === "loginButton") {
 			this.setState({
+
 				nameholder: "Create a username",
 				passholder: "Create a password",
 				submitId: "signupButton",
@@ -42,6 +45,7 @@ class Login extends React.Component {
 		}
 	};
 
+
 	handleChange = event => {
 		const { name, value } = event.target;
 		this.setState({ [name]: value });
@@ -50,19 +54,55 @@ class Login extends React.Component {
 	handleSubmit = event => {
 		// Preventing the default behavior of the form submit (which is to refresh the page)
 		event.preventDefault();
-		const loginCreds = {
-			username: this.state.username,
-			password: this.state.password
-		};
 
-		// Alert the user if their login is successful and clear the form input
-		$.post("/login", loginCreds, (req, res) => {
-			console.log(req, res);
-		});
-	};
+		console.log(event.target.id);
+		
+
+		switch(event.target.id){
+
+			case "loginForm":
+				console.log( this.state.username,  this.state.password);
+				const loginCreds = {
+					username: this.state.username,
+					password:this.state.password
+				};
+				console.log(loginCreds);
+				$.post ("/login", loginCreds, (req, res) => {
+					console.log(res);
+					const date = new Date('01 Jan 2020 00:00:00 PDT');
+					const endDate = date.toUTCString();
+					document.cookie="authToken"+res.authToken+";expires="+endDate;					
+				})
+				this.setState({
+					    username: "",
+					    password: ""
+				    })
+			break
+			case "signupForm":
+				const signupCreds = {
+					username: this.state.username,
+					password:this.state.password
+				};
+				console.log(signupCreds);
+				$.post ("/register",signupCreds, (req, res) => {
+					console.log(res);
+					const date = new Date('01 Jan 2020 00:00:00 PDT');
+					const endDate = date.toUTCString();
+					document.cookie="authToken"+res.authToken+";expires="+endDate;				
+				})
+				this.setState({
+					    username: "",
+					    password: ""
+				    })
+				break
+		}
+	
+	}
+
 
 	render() {
 		return (
+
 			<div className="LoginPage">
 				<div>
 					<Grid>
@@ -114,6 +154,7 @@ class Login extends React.Component {
 							</Col>
 						</Row>
 					</Grid>
+
 				</div>
 			</div>
 		);

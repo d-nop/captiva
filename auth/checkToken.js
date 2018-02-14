@@ -1,8 +1,9 @@
 module.exports= (req,res,next)=>{
-	const bearerHeader = req.headers["authorisation"];
+	const bearerHeader = req.headers["Authorisation"];
 	if(bearerHeader!=="undefined"){
 		console.log(bearerHeader);
 		req.token = bearerHeader;
+		return req.token;
 		next();
 	}
 	else{
